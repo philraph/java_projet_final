@@ -4,5 +4,15 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
              version="3.0">
     <persistence-unit name="default">
+        <class>net.efrei.java_projet_final.CompetenceEntity</class>
+        <class>net.efrei.java_projet_final.DisponibiliteEntity</class>
+        <class>net.efrei.java_projet_final.EcoleEntity</class>
+        <class>net.efrei.java_projet_final.EnseignantEntity</class>
+        <class>net.efrei.java_projet_final.NiveauEntity</class>
+        <class>net.efrei.java_projet_final.OffreEntity</class>
+        <class>net.efrei.java_projet_final.TitreEntity</class>
+        <class>net.efrei.java_projet_final.UtilisateurEntity</class>
+        <class>net.efrei.java_projet_final.CandidateEntity</class>
+        <class>net.efrei.java_projet_final.DemandeEntity</class>
     </persistence-unit>
 </persistence>

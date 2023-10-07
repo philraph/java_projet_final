@@ -1,3 +1,7 @@
+create database if not exists `projet`;
+
+use `projet`;
+
 create or replace table Competence
 (
     competence varchar(255) not null
