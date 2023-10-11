@@ -6,9 +6,15 @@ services:
     image: mariadb
     restart: always
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
       MARIADB_ROOT_PASSWORD: maria
+    volumes:
+      - db:/var/lib/mysql
+      - ./db-init.d:/docker-entrypoint-initdb.d
+
+volumes:
+  db:
     volumes:
       - db:/var/lib/mysql
       - ./db-init.d:/docker-entrypoint-initdb.d

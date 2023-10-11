@@ -34,8 +34,8 @@ create or replace table Utilisateur
         primary key,
     username varchar(255) null,
     password varchar(255) null,
-    admin    tinyint(1)   null,
-    valide   tinyint(1)   null
+    isAdmin    tinyint(1)   null,
+    isValid   tinyint(1)   null
 );
 
 create or replace table Ecole
