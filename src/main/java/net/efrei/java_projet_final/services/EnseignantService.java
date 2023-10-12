@@ -13,24 +13,24 @@ public class EnseignantService {
     @EJB
     private EnseignantBean enseignantBean;
 
-    public List<EnseignantEntity> getAllEnseignants() {
-        return enseignantBean.findAll();
-    }
-
-    public EnseignantEntity getEnseignantById(Integer id) {
-        return enseignantBean.findById(id);
-    }
-
-    public void createEnseignant(EnseignantEntity enseignant) {
+    public void create(EnseignantEntity enseignant) {
         enseignantBean.create(enseignant);
     }
 
-    public void updateEnseignant(EnseignantEntity updatedEnseignant) {
+    public void update(EnseignantEntity updatedEnseignant) {
         enseignantBean.update(updatedEnseignant);
     }
 
-    public void deleteEnseignant(EnseignantEntity enseignant) {
+    public void delete(EnseignantEntity enseignant) {
         enseignantBean.delete(enseignant);
+    }
+
+    public List<EnseignantEntity> findAll() {
+        return enseignantBean.findAll();
+    }
+
+    public EnseignantEntity findById(Integer id) {
+        return enseignantBean.findById(id);
     }
 
     public List<EnseignantEntity> findByNom(String nom) {

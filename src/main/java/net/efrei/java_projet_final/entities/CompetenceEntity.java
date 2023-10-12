@@ -1,15 +1,16 @@
 package net.efrei.java_projet_final.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @Table(name = CompetenceEntity.TABLE_NAME)
+@NamedQueries({
+        @NamedQuery(name = "CompetenceEntity.findAll", query = "SELECT c FROM CompetenceEntity c"),
+        @NamedQuery(name = "CompetenceEntity.findByCompetence", query = "SELECT c FROM CompetenceEntity c WHERE c.competence = :competence"),
+})
 public class CompetenceEntity implements Serializable {
     public static final String TABLE_NAME = "Competence";
 

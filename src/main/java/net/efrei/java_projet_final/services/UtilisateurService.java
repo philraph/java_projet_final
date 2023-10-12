@@ -30,7 +30,7 @@ public class UtilisateurService {
         return utilisateurBean.findById(id);
     }
 
-    public List<UtilisateurEntity> getAllUsers() {
+    public List<UtilisateurEntity> findAll() {
         return utilisateurBean.findAll();
     }
 
@@ -38,15 +38,15 @@ public class UtilisateurService {
         return utilisateurBean.findByUsername(username);
     }
 
-    public List<UtilisateurEntity> getAdmins(Boolean isAdmin) {
+    public List<UtilisateurEntity> findByIsAdmin(Boolean isAdmin) {
         return utilisateurBean.findByIsAdmin(isAdmin);
     }
 
-    public List<UtilisateurEntity> getValidUsers(Boolean isValid) {
+    public List<UtilisateurEntity> findByIsValid(Boolean isValid) {
         return utilisateurBean.findByIsValid(isValid);
     }
 
-    public List<UtilisateurEntity> getUsersByUsernameAndStatus(String username, Boolean isAdmin, Boolean isValid) {
+    public List<UtilisateurEntity> findByUsernameAndStatus(String username, Boolean isAdmin, Boolean isValid) {
         return utilisateurBean.findByUsernameAndStatus(username, isAdmin, isValid);
     }
 }

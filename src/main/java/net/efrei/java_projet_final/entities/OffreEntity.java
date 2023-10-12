@@ -10,7 +10,8 @@ import java.util.Objects;
 @NamedQueries({
         @NamedQuery(name = "OffreEntity.findAll", query = "SELECT o FROM OffreEntity o"),
         @NamedQuery(name = "OffreEntity.findByExigences", query = "SELECT o FROM OffreEntity o WHERE o.exigences = :exigences"),
-        @NamedQuery(name = "OffreEntity.findByRemarques", query = "SELECT o FROM OffreEntity o WHERE o.remarques = :remarques")
+        @NamedQuery(name = "OffreEntity.findByRemarques", query = "SELECT o FROM OffreEntity o WHERE o.remarques = :remarques"),
+        @NamedQuery(name = "OffreEntity.findByEcole", query = "SELECT o FROM OffreEntity o WHERE o.ecole.raisonSociale = :raisonsociale"),
 })
 public class OffreEntity implements Serializable {
     public static final String TABLE_NAME = "Offre";

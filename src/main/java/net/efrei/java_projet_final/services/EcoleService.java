@@ -13,15 +13,23 @@ public class EcoleService {
     @EJB
     private EcoleBean ecoleBean;
 
-    public void createEcole(EcoleEntity ecole) {
+    public void create(EcoleEntity ecole) {
         ecoleBean.create(ecole);
     }
 
-    public List<EcoleEntity> getAllEcoles() {
+    public void update(EcoleEntity ecole) {
+        ecoleBean.update(ecole);
+    }
+
+    public void delete(EcoleEntity ecole) {
+        ecoleBean.delete(ecole);
+    }
+
+    public List<EcoleEntity> findAll() {
         return ecoleBean.findAll();
     }
 
-    public EcoleEntity getEcoleById(Integer id) {
+    public EcoleEntity findById(Integer id) {
         return ecoleBean.findById(id);
     }
 
@@ -33,11 +41,4 @@ public class EcoleService {
         return ecoleBean.findByUsername(username);
     }
 
-    public void updateEcole(EcoleEntity ecole) {
-        ecoleBean.update(ecole);
-    }
-
-    public void deleteEcole(EcoleEntity ecole) {
-        ecoleBean.delete(ecole);
-    }
 }

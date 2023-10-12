@@ -8,6 +8,11 @@ import java.util.Objects;
 
 @Entity
 @Table(name = DisponibiliteEntity.TABLE_NAME)
+@NamedQueries({
+        @NamedQuery(name = "DisponibiliteEntity.findAll", query = "SELECT d FROM DisponibiliteEntity d"),
+        @NamedQuery(name = "DisponibiliteEntity.findByDateDebut", query = "SELECT d FROM DisponibiliteEntity d WHERE d.dateDebut = :dateDebut"),
+        @NamedQuery(name = "DisponibiliteEntity.findByDateFin", query = "SELECT d FROM DisponibiliteEntity d WHERE d.dateFin = :dateFin"),
+})
 public class DisponibiliteEntity implements Serializable {
     public static final String TABLE_NAME = "Disponibilite";
 

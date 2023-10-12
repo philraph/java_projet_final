@@ -4,6 +4,7 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
+import net.efrei.java_projet_final.entities.EcoleEntity;
 import net.efrei.java_projet_final.entities.OffreEntity;
 
 import java.util.List;
@@ -44,6 +45,12 @@ public class OffreBean {
     public List<OffreEntity> findByRemarques(String remarques) {
         TypedQuery<OffreEntity> query = em.createNamedQuery("OffreEntity.findByRemarques", OffreEntity.class);
         query.setParameter("remarques", remarques);
+        return query.getResultList();
+    }
+
+    public List<OffreEntity> findByEcole(EcoleEntity ecole) {
+        TypedQuery<OffreEntity> query = em.createNamedQuery("OffreEntity.findByEcole", OffreEntity.class);
+        query.setParameter("raisonsociale", ecole.getRaisonSociale());
         return query.getResultList();
     }
 
