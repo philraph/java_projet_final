@@ -41,11 +41,11 @@ public class EnseignantService {
         return enseignantBean.findByPrenom(prenom);
     }
 
-    public List<EnseignantEntity> findByMail(String mail) {
+    public EnseignantEntity findByMail(String mail) {
         return enseignantBean.findByMail(mail);
     }
 
-    public List<EnseignantEntity> findByTelephone(String telephone) {
+    public EnseignantEntity findByTelephone(String telephone) {
         return enseignantBean.findByTelephone(telephone);
     }
 
@@ -65,11 +65,11 @@ public class EnseignantService {
         return enseignantBean.findByExtra(extra);
     }
 
-    public List<EnseignantEntity> findByUsername(String username) {
+    public EnseignantEntity findByUsername(String username) {
         return enseignantBean.findByUsername(username);
     }
 
-    public List<EnseignantEntity> findByUsernameAndStatus(String username, Boolean isAdmin, Boolean isValid) {
+    public EnseignantEntity findByUsernameAndStatus(String username, Boolean isAdmin, Boolean isValid) {
         return enseignantBean.findByUsernameAndStatus(username, isAdmin, isValid);
     }
 }
