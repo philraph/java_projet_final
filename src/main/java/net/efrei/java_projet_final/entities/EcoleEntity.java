@@ -3,7 +3,9 @@ package net.efrei.java_projet_final.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = EcoleEntity.TABLE_NAME)
@@ -22,6 +24,9 @@ public class EcoleEntity implements Serializable {
     @JoinColumn(name = "idUtilisateur", nullable = false, unique = true)
     private UtilisateurEntity utilisateur;
 
+    @OneToMany(mappedBy = "ecole", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<OffreEntity> offres = new HashSet<>();
+
     public Integer getId() {
         return id;
     }
@@ -32,6 +37,10 @@ public class EcoleEntity implements Serializable {
 
     public String getRaisonSociale() {
         return raisonSociale;
+    }
+
+    public Set<OffreEntity> getOffres() {
+        return offres;
     }
 
     public void setUtilisateur(UtilisateurEntity utilisateur) {

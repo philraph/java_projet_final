@@ -7,6 +7,13 @@ import java.util.Objects;
 
 @Entity
 @Table(name = UtilisateurEntity.TABLE_NAME)
+@NamedQueries({
+        @NamedQuery(name = "UtilisateurEntity.findAll", query = "SELECT u FROM UtilisateurEntity u"),
+        @NamedQuery(name = "UtilisateurEntity.findByUsername", query = "SELECT u FROM UtilisateurEntity u WHERE u.username = :username"),
+        @NamedQuery(name = "UtilisateurEntity.findByIsAdmin", query = "SELECT u FROM UtilisateurEntity u WHERE u.isAdmin = :isAdmin"),
+        @NamedQuery(name = "UtilisateurEntity.findByIsValid", query = "SELECT u FROM UtilisateurEntity u WHERE u.isValid = :isValid"),
+        @NamedQuery(name = "UtilisateurEntity.findByUsernameAndStatus", query = "SELECT u FROM UtilisateurEntity u WHERE u.username = :username AND u.isAdmin = :isAdmin AND u.isValid = :isValid")
+})
 public class UtilisateurEntity implements Serializable {
     public static final String TABLE_NAME = "Utilisateur";
 

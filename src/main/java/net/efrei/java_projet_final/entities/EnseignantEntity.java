@@ -3,10 +3,25 @@ package net.efrei.java_projet_final.entities;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = EnseignantEntity.TABLE_NAME)
+@NamedQueries({
+        @NamedQuery(name = "EnseignantEntity.findAll", query = "SELECT e FROM EnseignantEntity e"),
+        @NamedQuery(name = "EnseignantEntity.findByNom", query = "SELECT e FROM EnseignantEntity e WHERE e.nom = :nom"),
+        @NamedQuery(name = "EnseignantEntity.findByPrenom", query = "SELECT e FROM EnseignantEntity e WHERE e.prenom = :prenom"),
+        @NamedQuery(name = "EnseignantEntity.findByMail", query = "SELECT e FROM EnseignantEntity e WHERE e.mail = :mail"),
+        @NamedQuery(name = "EnseignantEntity.findByTelephone", query = "SELECT e FROM EnseignantEntity e WHERE e.telephone = :telephone"),
+        @NamedQuery(name = "EnseignantEntity.findByCentreInterets", query = "SELECT e FROM EnseignantEntity e WHERE e.centreInterets = :centreInterets"),
+        @NamedQuery(name = "EnseignantEntity.findBySites", query = "SELECT e FROM EnseignantEntity e WHERE e.sites = :sites"),
+        @NamedQuery(name = "EnseignantEntity.findByTypeContrat", query = "SELECT e FROM EnseignantEntity e WHERE e.typeContrat = :typeContrat"),
+        @NamedQuery(name = "EnseignantEntity.findByExtra", query = "SELECT e FROM EnseignantEntity e WHERE e.extra = :extra"),
+        @NamedQuery(name = "EnseignantEntity.findByUsername", query = "SELECT e FROM EnseignantEntity e WHERE e.utilisateur.username = :username"),
+        @NamedQuery(name = "EnseignantEntity.findByUsernameAndStatus", query = "SELECT e FROM EnseignantEntity e WHERE e.utilisateur.username = :username AND e.utilisateur.isAdmin = :isAdmin AND e.utilisateur.isValid = :isValid")
+})
 public class EnseignantEntity implements Serializable {
     public static final String TABLE_NAME = "Enseignant";
 
@@ -42,6 +57,46 @@ public class EnseignantEntity implements Serializable {
     @OneToOne
     @JoinColumn(name = "idUtilisateur", nullable = false, unique = true)
     private UtilisateurEntity utilisateur;
+
+    @ManyToMany
+    @JoinTable(
+            name = "dispo",
+            joinColumns = @JoinColumn(name = "idEnseignant", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "idDispo", referencedColumnName = "id")
+    )
+    private Set<DisponibiliteEntity> disponibilites = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "possede",
+            joinColumns = @JoinColumn(name = "idEnseignant", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "competence", referencedColumnName = "competence")
+    )
+    private Set<CompetenceEntity> competences = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "jouit",
+            joinColumns = @JoinColumn(name = "idEnseignant", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "nomTitre", referencedColumnName = "nomTitre")
+    )
+    private Set<TitreEntity> titres = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "souhaite",
+            joinColumns = @JoinColumn(name = "idEnseignant", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "niveau", referencedColumnName = "niveau")
+    )
+    private Set<NiveauEntity> niveauxSouhaites = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "interesse",
+            joinColumns = @JoinColumn(name = "idEnseignant", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "idEcole", referencedColumnName = "id")
+    )
+    private Set<EcoleEntity> ecolesSouhaitees = new HashSet<>();
 
     public Integer getId() {
         return id;
@@ -81,6 +136,22 @@ public class EnseignantEntity implements Serializable {
 
     public UtilisateurEntity getUtilisateur() {
         return utilisateur;
+    }
+
+    public Set<DisponibiliteEntity> getDisponibilites() {
+        return disponibilites;
+    }
+
+    public Set<CompetenceEntity> getCompetences() {
+        return competences;
+    }
+
+    public Set<TitreEntity> getTitres() {
+        return titres;
+    }
+
+    public Set<NiveauEntity> getNiveauxSouhaites() {
+        return niveauxSouhaites;
     }
 
     public void setMail(String mail) {
