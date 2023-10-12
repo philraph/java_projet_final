@@ -10,6 +10,15 @@ import java.util.Objects;
 
 @Entity
 @Table(name = EvalueEntity.TABLE_NAME)
+@NamedQueries({
+        @NamedQuery(name = "EvalueEntity.findAll", query = "SELECT e FROM EvalueEntity e"),
+        @NamedQuery(name = "EvalueEntity.findByEnseignant", query = "SELECT e FROM EvalueEntity e WHERE e.enseignant = :enseignant"),
+        @NamedQuery(name = "EvalueEntity.findByEcole", query = "SELECT e FROM EvalueEntity e WHERE e.ecole = :ecole"),
+        @NamedQuery(name = "EvalueEntity.findByCompetence", query = "SELECT e FROM EvalueEntity e WHERE e.competence = :competence"),
+        @NamedQuery(name = "EvalueEntity.findByNote", query = "SELECT e FROM EvalueEntity e WHERE e.note = :note"),
+        @NamedQuery(name = "EvalueEntity.findByCommentaire", query = "SELECT e FROM EvalueEntity e WHERE e.commentaire = :commentaire"),
+        @NamedQuery(name = "EvalueEntity.findByEnseignantAndEcole", query = "SELECT e FROM EvalueEntity e WHERE e.enseignant = :enseignant AND e.ecole = :ecole")
+})
 public class EvalueEntity implements Serializable {
     public static final String TABLE_NAME = "evalue";
 
