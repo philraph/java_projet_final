@@ -28,7 +28,7 @@
   </ul>
   <ul>
     <li>
-      <a class="secondary" href="dashboard">Dashboard</a>
+      <a class="secondary" href="dashboard">${username}</a>
     </li>
     <li>
       <a class="secondary" href="logout">Se déconnecter</a>

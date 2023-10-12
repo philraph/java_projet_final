@@ -48,19 +48,14 @@
 
 <div class="container">
     <h2>Inscription</h2>
-    <form action="/register" method="post">
+    <form action="/registerEcole" method="post">
         <div class="form-group">
-            <label for="username">Nom d'utilisateur</label>
-            <input type="text" id="username" name="username" required>
+            <label for="raison">Raison Social</label>
+            <input type="text" id="raison" name="raison" required>
         </div>
 
         <div class="form-group">
-            <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-
-        <div class="form-group">
-            <button type="submit">S'inscrire</button>
+            <button type="submit">Valider</button>
         </div>
     </form>
 </div>

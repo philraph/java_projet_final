@@ -17,7 +17,6 @@
             max-width: 550px;
             margin: 100px auto;
             padding: 20px;
-            border: 1px solid #eee;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
@@ -49,7 +48,7 @@
 
 <div class="container">
     <h2>Connexion</h2>
-    <form action="/login" method="post">
+    <form action="/api/login" method="post">
         <div class="form-group">
             <label for="username">Nom d'utilisateur</label>
             <input type="text" id="username" name="username" required>

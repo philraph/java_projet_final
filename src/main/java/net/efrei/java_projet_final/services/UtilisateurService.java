@@ -1,5 +1,6 @@
 package net.efrei.java_projet_final.services;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import net.efrei.java_projet_final.beans.UtilisateurBean;

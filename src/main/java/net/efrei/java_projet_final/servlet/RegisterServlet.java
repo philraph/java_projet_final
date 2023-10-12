@@ -14,26 +14,6 @@ import java.io.IOException;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 
-    private UtilisateurService _userService = new UtilisateurService();
-
-    boolean register(String username, String mdp){
-
-        var user = _userService.findByUsername(username);
-
-        if(user != null){
-            // Le nom d'utilisateur existe déjà
-            return false;
-        }
-        else {
-            String bcryptHashString = BCrypt.withDefaults().hashToString(12, mdp.toCharArray());
-            user.setPassword(bcryptHashString);
-            user.setUsername(username);
-
-            _userService.register(user);
-            return false;
-        }
-    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         RequestDispatcher dispatcher = req.getRequestDispatcher("/register.jsp");
