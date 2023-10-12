@@ -25,6 +25,9 @@ public class UtilisateurEntity implements Serializable {
     @Column(name = "username")
     private String username;
 
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "admin")
     private Boolean isAdmin;
 
@@ -47,12 +50,20 @@ public class UtilisateurEntity implements Serializable {
         return username;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
     public void setIsAdmin(Boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public void setIsValid(Boolean isValid) {
@@ -64,6 +75,7 @@ public class UtilisateurEntity implements Serializable {
         return "UtilisateurEntity{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
                 ", isAdmin=" + isAdmin +
                 ", isValid=" + isValid +
                 '}';
@@ -79,6 +91,6 @@ public class UtilisateurEntity implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, isAdmin, isValid);
+        return Objects.hash(id, username, password, isAdmin, isValid);
     }
 }
