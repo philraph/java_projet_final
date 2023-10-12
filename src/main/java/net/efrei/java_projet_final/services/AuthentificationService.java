@@ -1,12 +1,15 @@
 package net.efrei.java_projet_final.services;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import jakarta.enterprise.inject.Default;
 import jakarta.inject.Inject;
+import jakarta.inject.Singleton;
 
+@Singleton
+@Default
 public class AuthentificationService {
 
-    @Inject
-    private UtilisateurService _userService;
+    private final UtilisateurService _userService = new UtilisateurService();
 
     public boolean login(String username, String mdp){
 
@@ -24,7 +27,7 @@ public class AuthentificationService {
         }
     }
 
-    boolean register(String username, String mdp){
+    public boolean register(String username, String mdp){
 
         var user = _userService.findByUsername(username);
 

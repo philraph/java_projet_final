@@ -61,7 +61,7 @@
 
         <fieldset>
             <label for="terms">
-                <input type="checkbox" id="terms" name="terms">
+                <input type="checkbox" id="ecole" name="ecole">
                 Je represente une ecole
             </label>
         </fieldset>
