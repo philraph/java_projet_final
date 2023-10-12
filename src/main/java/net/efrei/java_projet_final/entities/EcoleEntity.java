@@ -9,6 +9,11 @@ import java.util.Set;
 
 @Entity
 @Table(name = EcoleEntity.TABLE_NAME)
+@NamedQueries({
+        @NamedQuery(name = "EcoleEntity.findAll", query = "SELECT e FROM EcoleEntity e"),
+        @NamedQuery(name = "EcoleEntity.findByRaisonSociale", query = "SELECT e FROM EcoleEntity e WHERE e.raisonSociale = :raisonSociale"),
+        @NamedQuery(name = "EcoleEntity.findByUsername", query = "SELECT e FROM EcoleEntity e WHERE e.utilisateur.username = :username")
+})
 public class EcoleEntity implements Serializable {
     public static final String TABLE_NAME = "Ecole";
 

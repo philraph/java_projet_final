@@ -22,7 +22,11 @@ public class UtilisateurBean {
     }
 
     public void delete(UtilisateurEntity utilisateur) {
-        em.remove(em.merge(utilisateur));
+        if (em.contains(utilisateur)) {
+            em.remove(utilisateur);
+        } else {
+            em.remove(em.merge(utilisateur));
+        }
     }
 
     public UtilisateurEntity findById(Object id) {
@@ -33,10 +37,10 @@ public class UtilisateurBean {
         return em.createNamedQuery("UtilisateurEntity.findAll", UtilisateurEntity.class).getResultList();
     }
 
-    public List<UtilisateurEntity> findByUsername(String username) {
+    public UtilisateurEntity findByUsername(String username) {
         return em.createNamedQuery("UtilisateurEntity.findByUsername", UtilisateurEntity.class)
                 .setParameter("username", username)
-                .getResultList();
+                .getSingleResult();
     }
 
     public List<UtilisateurEntity> findByIsAdmin(Boolean isAdmin) {

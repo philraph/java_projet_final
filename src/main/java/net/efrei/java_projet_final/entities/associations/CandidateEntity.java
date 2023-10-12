@@ -9,6 +9,16 @@ import java.util.Objects;
 
 @Entity
 @Table(name = CandidateEntity.TABLE_NAME)
+@NamedQueries(
+        {
+                @NamedQuery(name = "CandidateEntity.findAll", query = "SELECT c FROM CandidateEntity c"),
+                @NamedQuery(name = "CandidateEntity.findByEnseignant", query = "SELECT c FROM CandidateEntity c WHERE c.enseignant = :enseignant"),
+                @NamedQuery(name = "CandidateEntity.findByOffre", query = "SELECT c FROM CandidateEntity c WHERE c.offre = :offre"),
+                @NamedQuery(name = "CandidateEntity.findByContactPar", query = "SELECT c FROM CandidateEntity c WHERE c.contactPar = :contactPar"),
+                @NamedQuery(name = "CandidateEntity.findByContactLe", query = "SELECT c FROM CandidateEntity c WHERE c.contactLe = :contactLe"),
+                @NamedQuery(name = "CandidateEntity.findByDecision", query = "SELECT c FROM CandidateEntity c WHERE c.decision = :decision")
+        }
+)
 public class CandidateEntity implements Serializable {
     public static final String TABLE_NAME = "candidate";
 

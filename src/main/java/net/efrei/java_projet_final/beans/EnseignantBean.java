@@ -18,12 +18,16 @@ public class EnseignantBean {
         em.persist(enseignant);
     }
 
-    public EnseignantEntity update(EnseignantEntity enseignant) {
-        return em.merge(enseignant);
+    public void update(EnseignantEntity enseignant) {
+        em.merge(enseignant);
     }
 
     public void delete(EnseignantEntity enseignant) {
-        em.remove(enseignant);
+        if (em.contains(enseignant)) {
+            em.remove(enseignant);
+        } else {
+            em.remove(em.merge(enseignant));
+        }
     }
 
     public List<EnseignantEntity> findAll() {
@@ -47,16 +51,16 @@ public class EnseignantBean {
         return query.getResultList();
     }
 
-    public List<EnseignantEntity> findByMail(String mail) {
+    public EnseignantEntity findByMail(String mail) {
         TypedQuery<EnseignantEntity> query = em.createNamedQuery("EnseignantEntity.findByMail", EnseignantEntity.class);
         query.setParameter("mail", mail);
-        return query.getResultList();
+        return query.getSingleResult();
     }
 
-    public List<EnseignantEntity> findByTelephone(String telephone) {
+    public EnseignantEntity findByTelephone(String telephone) {
         TypedQuery<EnseignantEntity> query = em.createNamedQuery("EnseignantEntity.findByTelephone", EnseignantEntity.class);
         query.setParameter("telephone", telephone);
-        return query.getResultList();
+        return query.getSingleResult();
     }
 
     public List<EnseignantEntity> findByCentreInterets(String centreInterets) {
@@ -83,18 +87,18 @@ public class EnseignantBean {
         return query.getResultList();
     }
 
-    public List<EnseignantEntity> findByUsername(String username) {
+    public EnseignantEntity findByUsername(String username) {
         TypedQuery<EnseignantEntity> query = em.createNamedQuery("EnseignantEntity.findByUsername", EnseignantEntity.class);
         query.setParameter("username", username);
-        return query.getResultList();
+        return query.getSingleResult();
     }
 
-    public List<EnseignantEntity> findByUsernameAndStatus(String username, Boolean isAdmin, Boolean isValid) {
+    public EnseignantEntity findByUsernameAndStatus(String username, Boolean isAdmin, Boolean isValid) {
         TypedQuery<EnseignantEntity> query = em.createNamedQuery("EnseignantEntity.findByUsernameAndStatus", EnseignantEntity.class);
         query.setParameter("username", username);
         query.setParameter("isAdmin", isAdmin);
         query.setParameter("isValid", isValid);
-        return query.getResultList();
+        return query.getSingleResult();
     }
 
 }

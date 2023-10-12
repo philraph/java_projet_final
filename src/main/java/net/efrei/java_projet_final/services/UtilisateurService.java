@@ -33,7 +33,7 @@ public class UtilisateurService {
         return utilisateurBean.findAll();
     }
 
-    public List<UtilisateurEntity> findByUsername(String username) {
+    public UtilisateurEntity findByUsername(String username) {
         return utilisateurBean.findByUsername(username);
     }
 
