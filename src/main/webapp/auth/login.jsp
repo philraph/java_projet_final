@@ -12,37 +12,7 @@
     <title>Login</title>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
-    <style>
-        .container {
-            max-width: 550px;
-            margin: 100px auto;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-
-        button {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 8px 15px;
-            border: none;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #0056b3;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/resources/css/styles.css"/>
 </head>
 <body>
 
@@ -62,6 +32,9 @@
         <div class="form-group">
             <button type="submit">Se connecter</button>
         </div>
+
+        <p>Pas encore de compte ? <a href="/auth/register.jsp">S'inscrire</a></p>
+
     </form>
 </div>
 

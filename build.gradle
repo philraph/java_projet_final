@@ -3,7 +3,7 @@ plugins {
     id 'war'
 }
 
-group 'com.example'
+group 'net.efrei'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -17,9 +17,23 @@ ext {
 sourceCompatibility = '11'
 targetCompatibility = '11'
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
+
+tasks.register('explodedWar', Copy) {
+    dependsOn war
+    from zipTree(tasks.war.archiveFile.get().getAsFile())
+    into "$buildDir/exploded/ROOT.war"
+}
+
+tasks.register('deployToWildflyContainer') {
+    dependsOn explodedWar
+    doLast {
+        new File("${buildDir}/exploded/ROOT.war.dodeploy").createNewFile()
+    }
+}
+
 
 dependencies {
     compileOnly('jakarta.platform:jakarta.jakartaee-api:9.1.0')
@@ -27,9 +41,9 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
-    implementation 'com.google.code.gson:gson:2.8.8'
-    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.0'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
+    implementation 'com.google.code.gson:gson:2.8.9'
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.14.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.1'
     implementation 'jakarta.enterprise:jakarta.enterprise.cdi-api:3.0.0'
 }
 

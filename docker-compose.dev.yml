@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: maria
+    volumes:
+      - db:/var/lib/mysql
+      - ./db-init.d:/docker-entrypoint-initdb.d
+
+  wildfly:
+    image: quay.io/wildfly/wildfly:latest-jdk17
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./build/exploded/ROOT.war/:/opt/jboss/wildfly/standalone/deployments/ROOT.war
+      - ./build/exploded/ROOT.war.dodeploy:/opt/jboss/wildfly/standalone/deployments/ROOT.war.dodeploy
+    environment:
+      - DB_ADDR=db
+      - DB_PORT=3306
+      - DB_USER=root
+      - DB_PASS=maria
+
+volumes:
+  db:

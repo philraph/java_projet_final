@@ -1,0 +1,23 @@
+# Fichiers et dossiers de Gradle
+.gradle/
+build/
+gradlew
+gradlew.bat
+gradle.properties
+
+# Fichiers de configuration de l'IDE (IntelliJ IDEA)
+.idea/
+*.ipr
+*.iws
+
+# Fichiers de configuration de l'IDE (Eclipse)
+.classpath
+.project
+.settings/
+
+# Autres fichiers et dossiers à ignorer
+*.log
+*.bak
+*.swp
+*.swo
+*.tmp
