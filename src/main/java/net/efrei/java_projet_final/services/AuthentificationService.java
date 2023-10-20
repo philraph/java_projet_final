@@ -1,12 +1,12 @@
 package net.efrei.java_projet_final.services;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
+import jakarta.ejb.Stateless;
 import jakarta.enterprise.inject.Default;
 import jakarta.inject.Inject;
 import jakarta.inject.Singleton;
 
-@Singleton
-@Default
+@Stateless
 public class AuthentificationService {
 
     private final UtilisateurService _userService = new UtilisateurService();

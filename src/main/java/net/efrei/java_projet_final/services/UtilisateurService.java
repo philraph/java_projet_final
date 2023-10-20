@@ -10,8 +10,7 @@ import net.efrei.java_projet_final.entities.UtilisateurEntity;
 
 import java.util.List;
 
-@Singleton
-@Default
+@Stateless
 public class UtilisateurService {
 
     @EJB
