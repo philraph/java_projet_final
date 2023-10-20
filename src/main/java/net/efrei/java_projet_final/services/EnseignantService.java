@@ -8,7 +8,7 @@ import net.efrei.java_projet_final.entities.EnseignantEntity;
 
 import java.util.List;
 
-@Singleton
+@Stateless
 public class EnseignantService {
 
     @EJB

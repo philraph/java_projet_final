@@ -36,8 +36,9 @@ tasks.register('deployToWildflyContainer') {
 
 
 dependencies {
-    compileOnly('jakarta.platform:jakarta.jakartaee-api:9.1.0')
+    implementation('jakarta.platform:jakarta.jakartaee-api:9.1.0')
     implementation group: 'at.favre.lib', name: 'bcrypt', version: '0.10.2'
+    implementation 'org.mariadb.jdbc:mariadb-java-client:2.7.3'
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")

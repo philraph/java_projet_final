@@ -1,6 +1,7 @@
 package net.efrei.java_projet_final.services;
 
 import jakarta.ejb.EJB;
+import jakarta.ejb.Stateless;
 import net.efrei.java_projet_final.beans.EvalueBean;
 import net.efrei.java_projet_final.entities.CompetenceEntity;
 import net.efrei.java_projet_final.entities.EcoleEntity;
@@ -9,6 +10,7 @@ import net.efrei.java_projet_final.entities.associations.EvalueEntity;
 
 import java.util.List;
 
+@Stateless
 public class EvalueService {
 
     @EJB

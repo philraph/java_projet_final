@@ -2,6 +2,7 @@ package net.efrei.java_projet_final.servlet.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -13,7 +14,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet("/api/register")
-public class ApiRegisterServlet {
+public class ApiRegisterServlet extends HttpServlet {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
