@@ -35,6 +35,7 @@ public class AuthentificationService {
             String bcryptHashString = BCrypt.withDefaults().hashToString(12, mdp.toCharArray());
             user.setPassword(bcryptHashString);
             user.setUsername(username);
+            user.setIsValid(false);
 
             _userService.register(user);
             return true;

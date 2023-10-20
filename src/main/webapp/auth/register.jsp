@@ -61,10 +61,6 @@
                     <input type="checkbox" id="terms" name="terms" x-model="acceptedTerms" required>
                     J'accepte les Conditions Generales d'Utilisation <span style="color: red">*</span>
                 </label>
-                <label for="notification">
-                    <input type="checkbox" id="notification" name="notification">
-                    Je souhaite recevoir des notifications
-                </label>
             </fieldset>
             <button type="submit" :disabled="!acceptedTerms || !validatePasswords())">S'inscrire</button>
         </div>
