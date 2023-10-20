@@ -3,13 +3,14 @@ package net.efrei.java_projet_final.services;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
 import net.efrei.java_projet_final.beans.DisponibiliteBean;
 import net.efrei.java_projet_final.entities.DisponibiliteEntity;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Stateless
+@ApplicationScoped
 public class DisponibiliteService {
 
     @EJB

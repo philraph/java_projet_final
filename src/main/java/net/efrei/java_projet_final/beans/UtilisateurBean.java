@@ -2,6 +2,7 @@ package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 import net.efrei.java_projet_final.entities.UtilisateurEntity;
 
@@ -11,7 +12,7 @@ import java.util.List;
 public class UtilisateurBean {
 
     @PersistenceContext()
-    private EntityManager em;
+    private EntityManager em = Persistence.createEntityManagerFactory("projet").createEntityManager();
 
     public void create(UtilisateurEntity utilisateur) {
         em.persist(utilisateur);

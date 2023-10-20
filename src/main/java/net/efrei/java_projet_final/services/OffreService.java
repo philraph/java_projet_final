@@ -2,13 +2,14 @@ package net.efrei.java_projet_final.services;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
 import net.efrei.java_projet_final.beans.OffreBean;
 import net.efrei.java_projet_final.entities.EcoleEntity;
 import net.efrei.java_projet_final.entities.OffreEntity;
 
 import java.util.List;
 
-@Stateless
+@ApplicationScoped
 public class OffreService {
 
     @EJB

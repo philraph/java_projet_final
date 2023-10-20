@@ -2,12 +2,13 @@ package net.efrei.java_projet_final.services;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
 import net.efrei.java_projet_final.beans.CompetenceBean;
 import net.efrei.java_projet_final.entities.CompetenceEntity;
 
 import java.util.List;
 
-@Stateless
+@ApplicationScoped
 public class CompetenceService {
 
     @EJB

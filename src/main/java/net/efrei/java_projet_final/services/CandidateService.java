@@ -2,6 +2,8 @@ package net.efrei.java_projet_final.services;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.enterprise.inject.Typed;
 import net.efrei.java_projet_final.beans.CandidateBean;
 import net.efrei.java_projet_final.entities.EnseignantEntity;
 import net.efrei.java_projet_final.entities.OffreEntity;
@@ -9,7 +11,7 @@ import net.efrei.java_projet_final.entities.associations.CandidateEntity;
 
 import java.util.List;
 
-@Stateless
+@ApplicationScoped
 public class CandidateService {
 
     @EJB

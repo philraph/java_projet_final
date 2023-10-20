@@ -2,6 +2,7 @@ package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import net.efrei.java_projet_final.entities.EnseignantEntity;
@@ -14,7 +15,7 @@ import java.util.List;
 public class CandidateBean {
 
     @PersistenceContext()
-    private EntityManager em;
+    private EntityManager em = Persistence.createEntityManagerFactory("projet").createEntityManager();
 
     public void create(CandidateEntity candidate) {
         em.persist(candidate);

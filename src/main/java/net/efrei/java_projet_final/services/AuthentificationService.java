@@ -1,18 +1,22 @@
 package net.efrei.java_projet_final.services;
 
 import at.favre.lib.crypto.bcrypt.BCrypt;
-import jakarta.ejb.Stateless;
-import jakarta.enterprise.inject.Default;
-import jakarta.inject.Singleton;
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
 import net.efrei.java_projet_final.entities.EcoleEntity;
 import net.efrei.java_projet_final.entities.EnseignantEntity;
 
-@Stateless
+@ApplicationScoped
 public class AuthentificationService {
 
-    private final UtilisateurService _userService = new UtilisateurService();
-    private final EcoleService _ecoleService = new EcoleService();
-    private final EnseignantService _ensaignantService = new EnseignantService();
+    @Inject
+    private UtilisateurService _userService;
+
+    @Inject
+    private EcoleService _ecoleService;
+
+    @Inject
+    private EnseignantService _enseignantService;
 
     public boolean loginUtilisateur(String username, String mdp){
 
@@ -86,7 +90,7 @@ public class AuthentificationService {
             newEnseignant.setTypeContrat(contrat);
 
             _userService.register(user);
-            _ensaignantService.create(newEnseignant);
+            _enseignantService.create(newEnseignant);
 
             System.out.println(newEnseignant.toString());
 

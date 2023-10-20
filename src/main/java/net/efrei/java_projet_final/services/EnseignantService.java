@@ -2,13 +2,14 @@ package net.efrei.java_projet_final.services;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Singleton;
 import net.efrei.java_projet_final.beans.EnseignantBean;
 import net.efrei.java_projet_final.entities.EnseignantEntity;
 
 import java.util.List;
 
-@Stateless
+@ApplicationScoped
 public class EnseignantService {
 
     @EJB

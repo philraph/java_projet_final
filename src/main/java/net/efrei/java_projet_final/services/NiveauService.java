@@ -3,12 +3,13 @@ package net.efrei.java_projet_final.services;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
 import net.efrei.java_projet_final.beans.NiveauBean;
 import net.efrei.java_projet_final.entities.NiveauEntity;
 
 import java.util.List;
 
-@Stateless
+@ApplicationScoped
 public class NiveauService {
 
     @EJB
