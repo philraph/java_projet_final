@@ -1,6 +1,5 @@
 package net.efrei.java_projet_final.servlet.api;
 
-import jakarta.inject.Inject;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,7 +29,7 @@ public class ApiLoginServlet extends HttpServlet {
 
         Map<String, String> responseMap = new HashMap<>();
 
-        if (_authService.login(username, password)) {
+        if (_authService.loginUtilisateur(username, password)) {
             responseMap.put("status", "success");
             responseMap.put("message", "success");
 

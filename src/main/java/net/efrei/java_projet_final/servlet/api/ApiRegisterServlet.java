@@ -22,19 +22,50 @@ public class ApiRegisterServlet {
     private final UtilisateurService _userService = new UtilisateurService();
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+
+        // Champs commun à tou t types d'utilisateur
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String accountType = req.getParameter("accountType");
         String terms = req.getParameter("terms");
         String notification = req.getParameter("notification");
 
-        System.console().printf("terms : " + terms +"\n");
-        System.console().printf("notification : " + notification +"\n");
+        System.out.println("terms : " + terms +"\n");
+        System.out.println("notification : " + notification +"\n");
 
         Map<String, String> responseMap = new HashMap<>();
 
+        boolean isSuccess = false;
+
         // Create a new user
-        if (_authService.register(username, password)) {
+        if(accountType == "ecole"){
+            String raisonSocial = req.getParameter("raison");
+
+            isSuccess = _authService.registerEcole(username, password, raisonSocial);
+        }
+        else if(accountType == "enseignant") {
+            String name = req.getParameter("name");
+            String prenom = req.getParameter("prenom");
+            String email = req.getParameter("email");
+            String telephone = req.getParameter("telephone");
+            String centreInteret = req.getParameter("centreInteret");
+            String site = req.getParameter("site");
+            String contrat = req.getParameter("contrat");
+            String extra = req.getParameter("extra");
+
+            isSuccess = _authService.registerEnseignant(username,
+                                                        password,
+                                                        name,
+                                                        prenom,
+                                                        email,
+                                                        telephone,
+                                                        centreInteret,
+                                                        site,
+                                                        contrat,
+                                                        extra);
+        }
+
+        if (isSuccess) {
             responseMap.put("status", "success");
             responseMap.put("message", "registration");
 
