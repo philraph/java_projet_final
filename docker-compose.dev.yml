@@ -18,6 +18,7 @@ services:
       - "8080:8080"
     volumes:
       - ./build/exploded:/opt/jboss/wildfly/standalone/deployments:rw
+#      - ./docker/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml:ro
     environment:
       - DB_ADDR=db
       - DB_PORT=3306
