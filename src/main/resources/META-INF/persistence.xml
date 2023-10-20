@@ -5,13 +5,10 @@
              version="3.0">
     <persistence-unit name="projet">
         <properties>
-            <property name="jakarta.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mariadb://${DB_ADDR}:${DB_PORT}/projet"/>
-            <property name="jakarta.persistence.jdbc.user" value="${DB_USER}"/>
-            <property name="jakarta.persistence.jdbc.password" value="${DB_PASS}"/>
-<!--            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>-->
-<!--            <property name="hibernate.hbm2ddl.auto" value="validate"/>-->
-<!--            <property name="hibernate.default_schema" value="projet" />-->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDBDialect"/>
+            <property name="hibernate.connection.url" value="jdbc:mariadb://${DB_ADDR}:${DB_PORT}/projet"/>
+            <property name="hibernate.connection.username" value="${DB_USER}"/>
+            <property name="hibernate.connection.password" value="${DB_PASS}"/>
         </properties>
     </persistence-unit>
 </persistence>
