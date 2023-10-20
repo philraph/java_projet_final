@@ -32,16 +32,14 @@ public class AuthentificationService {
         var user = _userService.findByUsername(username);
 
         if(user != null){
-            // Le nom d'utilisateur existe déjà
-            return false;
-        }
-        else {
             String bcryptHashString = BCrypt.withDefaults().hashToString(12, mdp.toCharArray());
             user.setPassword(bcryptHashString);
             user.setUsername(username);
 
             _userService.register(user);
-            return false;
+            return true;
         }
+
+        return false;
     }
 }
