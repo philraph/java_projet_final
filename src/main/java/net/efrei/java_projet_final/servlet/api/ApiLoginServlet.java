@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @WebServlet("/api/login")
-public class ApiLoginServlt extends HttpServlet {
+public class ApiLoginServlet extends HttpServlet {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
