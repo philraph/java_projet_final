@@ -88,6 +88,8 @@ public class AuthentificationService {
             _userService.register(user);
             _ensaignantService.create(newEnseignant);
 
+            System.out.println(newEnseignant.toString());
+
             return false;
         }
     }
@@ -115,6 +117,8 @@ public class AuthentificationService {
 
             _userService.register(user);
             _ecoleService.create(newEcole);
+
+            System.out.println(newEcole.toString());
             return false;
         }
     }
