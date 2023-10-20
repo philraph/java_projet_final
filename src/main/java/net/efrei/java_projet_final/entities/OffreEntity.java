@@ -21,6 +21,9 @@ public class OffreEntity implements Serializable {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Column(name = "intitule")
+    private String intitule;
+
     @Column(name = "exigences")
     private String exigences;
 
@@ -71,9 +74,25 @@ public class OffreEntity implements Serializable {
         this.ecole = ecole;
     }
 
+    public String getIntitule() {
+        return intitule;
+    }
+
+    public void setIntitule(String intitule) {
+        this.intitule = intitule;
+    }
+
+
     @Override
     public String toString() {
-        return "OffreEntity{" + "id=" + id + ", exigences='" + exigences + '\'' + ", remarques='" + remarques + '\'' + ", disponibilite=" + disponibilite + ", ecole=" + ecole + '}';
+        return "OffreEntity{" +
+                "id=" + id +
+                ", intitule='" + intitule + '\'' +
+                ", exigences='" + exigences + '\'' +
+                ", remarques='" + remarques + '\'' +
+                ", disponibilite=" + disponibilite +
+                ", ecole=" + ecole +
+                '}';
     }
 
     @Override
