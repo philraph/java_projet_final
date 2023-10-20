@@ -17,8 +17,7 @@ services:
     ports:
       - "8080:8080"
     volumes:
-      - ./build/exploded/ROOT.war/:/opt/jboss/wildfly/standalone/deployments/ROOT.war
-      - ./build/exploded/ROOT.war.dodeploy:/opt/jboss/wildfly/standalone/deployments/ROOT.war.dodeploy
+      - ./build/exploded:/opt/jboss/wildfly/standalone/deployments:rw
     environment:
       - DB_ADDR=db
       - DB_PORT=3306
