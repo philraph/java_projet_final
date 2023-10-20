@@ -28,8 +28,10 @@ public class ApiRegisterServlet {
         String terms = req.getParameter("terms");
         String notification = req.getParameter("notification");
 
-        Map<String, String> responseMap = new HashMap<>();
+        System.console().printf("terms : " + terms +"\n");
+        System.console().printf("notification : " + notification +"\n");
 
+        Map<String, String> responseMap = new HashMap<>();
 
         // Create a new user
         if (_authService.register(username, password)) {
