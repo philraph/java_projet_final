@@ -14,18 +14,11 @@
 
   <div class="form-group">
     <label for="exigence">Exigences du poste</label>
-    <textarea placeholder="Exigences : visio, experience..."
-              id="exigence" name="exigence"
-    >
-    </textarea><br>
+    <textarea placeholder="Exigences : visio, experience..." id="exigence" name="exigence"></textarea><br>
   </div>
 
   <div class="form-group">
-    <textarea placeholder="remarque..."
-              aria-label="Remarques"
-              id="remarque" name="remarque"
-    >
-    </textarea><br>
+    <textarea placeholder="remarque..." aria-label="Remarques" id="remarque" name="remarque"></textarea><br>
   </div>
 
   <div class="form-group">
