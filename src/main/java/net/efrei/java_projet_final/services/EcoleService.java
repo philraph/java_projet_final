@@ -5,7 +5,7 @@ import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Singleton;
 import net.efrei.java_projet_final.beans.EcoleBean;
-import net.efrei.java_projet_final.entities.EcoleEntity;
+import net.efrei.java_projet_final.entities.Ecole;
 
 import java.util.List;
 
@@ -15,31 +15,31 @@ public class EcoleService {
     @EJB
     private EcoleBean ecoleBean;
 
-    public void create(EcoleEntity ecole) {
+    public void create(Ecole ecole) {
         ecoleBean.create(ecole);
     }
 
-    public void update(EcoleEntity ecole) {
+    public void update(Ecole ecole) {
         ecoleBean.update(ecole);
     }
 
-    public void delete(EcoleEntity ecole) {
+    public void delete(Ecole ecole) {
         ecoleBean.delete(ecole);
     }
 
-    public List<EcoleEntity> findAll() {
+    public List<Ecole> findAll() {
         return ecoleBean.findAll();
     }
 
-    public EcoleEntity findById(Integer id) {
+    public Ecole findById(Integer id) {
         return ecoleBean.findById(id);
     }
 
-    public EcoleEntity findByRaisonSociale(String raisonSociale) {
+    public Ecole findByRaisonSociale(String raisonSociale) {
         return ecoleBean.findByRaisonSociale(raisonSociale);
     }
 
-    public EcoleEntity findByUsername(String username) {
+    public Ecole findByUsername(String username) {
         return ecoleBean.findByUsername(username);
     }
 

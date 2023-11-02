@@ -5,9 +5,9 @@ import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Typed;
 import net.efrei.java_projet_final.beans.CandidateBean;
-import net.efrei.java_projet_final.entities.EnseignantEntity;
-import net.efrei.java_projet_final.entities.OffreEntity;
-import net.efrei.java_projet_final.entities.associations.CandidateEntity;
+import net.efrei.java_projet_final.entities.Enseignant;
+import net.efrei.java_projet_final.entities.Offre;
+import net.efrei.java_projet_final.entities.Candidate;
 
 import java.util.List;
 
@@ -17,43 +17,43 @@ public class CandidateService {
     @EJB
     private CandidateBean candidateBean;
 
-    public void create(CandidateEntity candidate) {
+    public void create(Candidate candidate) {
         candidateBean.create(candidate);
     }
 
-    public void update(CandidateEntity candidate) {
+    public void update(Candidate candidate) {
         candidateBean.update(candidate);
     }
 
-    public void delete(CandidateEntity candidate) {
+    public void delete(Candidate candidate) {
         candidateBean.delete(candidate);
     }
 
-    public List<CandidateEntity> findAll() {
+    public List<Candidate> findAll() {
         return candidateBean.findAll();
     }
 
-    public CandidateEntity findById(Integer id) {
+    public Candidate findById(Integer id) {
         return candidateBean.findById(id);
     }
 
-    public CandidateEntity findByEnseignant(EnseignantEntity enseignant) {
+    public Candidate findByEnseignant(Enseignant enseignant) {
         return candidateBean.findByEnseignant(enseignant);
     }
 
-    public CandidateEntity findByOffre(OffreEntity offre) {
+    public Candidate findByOffre(Offre offre) {
         return candidateBean.findByOffre(offre);
     }
 
-    public List<CandidateEntity> findByContactPar(String contactPar) {
+    public List<Candidate> findByContactPar(String contactPar) {
         return candidateBean.findByContactPar(contactPar);
     }
 
-    public List<CandidateEntity> findByContactLe(String contactLe) {
+    public List<Candidate> findByContactLe(String contactLe) {
         return candidateBean.findByContactLe(contactLe);
     }
 
-    public List<CandidateEntity> findByDecision(String decision) {
+    public List<Candidate> findByDecision(String decision) {
         return candidateBean.findByDecision(decision);
     }
 

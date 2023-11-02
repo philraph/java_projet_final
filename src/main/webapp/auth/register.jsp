@@ -11,7 +11,7 @@
 
 <div class="container">
     <h2>Inscription</h2>
-    <form action="/register" method="post" x-data="{
+    <form action="${pageContext.request.contextPath}/api/register" method="post" x-data="{
     accountType: '',
     acceptedTerms: false,
     password: '',

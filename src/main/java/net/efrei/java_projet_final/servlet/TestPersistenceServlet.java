@@ -7,7 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import net.efrei.java_projet_final.entities.UtilisateurEntity;
+import net.efrei.java_projet_final.entities.Utilisateur;
 import net.efrei.java_projet_final.services.UtilisateurService;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class TestPersistenceServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        UtilisateurEntity user = new UtilisateurEntity();
+        Utilisateur user = new Utilisateur();
         user.setUsername("test");
         user.setPassword("test");
         user.setIsAdmin(false);

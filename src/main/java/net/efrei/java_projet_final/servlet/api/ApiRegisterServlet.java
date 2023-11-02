@@ -27,7 +27,7 @@ public class ApiRegisterServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        // Champs commun à tou t types d'utilisateur
+        // Champs commun à tout types d'utilisateur
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String accountType = req.getParameter("accountType");
@@ -47,7 +47,7 @@ public class ApiRegisterServlet extends HttpServlet {
 
             isSuccess = _authService.registerEcole(username, password, raisonSocial);
         }
-        else if(accountType == "enseignant") {
+        else if(accountType.equals("enseignant")) {
             String name = req.getParameter("name");
             String prenom = req.getParameter("prenom");
             String email = req.getParameter("email");

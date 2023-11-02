@@ -5,7 +5,7 @@ import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Singleton;
 import net.efrei.java_projet_final.beans.EnseignantBean;
-import net.efrei.java_projet_final.entities.EnseignantEntity;
+import net.efrei.java_projet_final.entities.Enseignant;
 
 import java.util.List;
 
@@ -15,63 +15,63 @@ public class EnseignantService {
     @EJB
     private EnseignantBean enseignantBean;
 
-    public void create(EnseignantEntity enseignant) {
+    public void create(Enseignant enseignant) {
         enseignantBean.create(enseignant);
     }
 
-    public void update(EnseignantEntity updatedEnseignant) {
+    public void update(Enseignant updatedEnseignant) {
         enseignantBean.update(updatedEnseignant);
     }
 
-    public void delete(EnseignantEntity enseignant) {
+    public void delete(Enseignant enseignant) {
         enseignantBean.delete(enseignant);
     }
 
-    public List<EnseignantEntity> findAll() {
+    public List<Enseignant> findAll() {
         return enseignantBean.findAll();
     }
 
-    public EnseignantEntity findById(Integer id) {
+    public Enseignant findById(Integer id) {
         return enseignantBean.findById(id);
     }
 
-    public List<EnseignantEntity> findByNom(String nom) {
+    public List<Enseignant> findByNom(String nom) {
         return enseignantBean.findByNom(nom);
     }
 
-    public List<EnseignantEntity> findByPrenom(String prenom) {
+    public List<Enseignant> findByPrenom(String prenom) {
         return enseignantBean.findByPrenom(prenom);
     }
 
-    public EnseignantEntity findByMail(String mail) {
+    public Enseignant findByMail(String mail) {
         return enseignantBean.findByMail(mail);
     }
 
-    public EnseignantEntity findByTelephone(String telephone) {
+    public Enseignant findByTelephone(String telephone) {
         return enseignantBean.findByTelephone(telephone);
     }
 
-    public List<EnseignantEntity> findByCentreInterets(String centreInterets) {
+    public List<Enseignant> findByCentreInterets(String centreInterets) {
         return enseignantBean.findByCentreInterets(centreInterets);
     }
 
-    public List<EnseignantEntity> findBySites(String sites) {
+    public List<Enseignant> findBySites(String sites) {
         return enseignantBean.findBySites(sites);
     }
 
-    public List<EnseignantEntity> findByTypeContrat(String typeContrat) {
+    public List<Enseignant> findByTypeContrat(String typeContrat) {
         return enseignantBean.findByTypeContrat(typeContrat);
     }
 
-    public List<EnseignantEntity> findByExtra(String extra) {
+    public List<Enseignant> findByExtra(String extra) {
         return enseignantBean.findByExtra(extra);
     }
 
-    public EnseignantEntity findByUsername(String username) {
+    public Enseignant findByUsername(String username) {
         return enseignantBean.findByUsername(username);
     }
 
-    public EnseignantEntity findByUsernameAndStatus(String username, Boolean isAdmin, Boolean isValid) {
+    public Enseignant findByUsernameAndStatus(String username, Boolean isAdmin, Boolean isValid) {
         return enseignantBean.findByUsernameAndStatus(username, isAdmin, isValid);
     }
 }

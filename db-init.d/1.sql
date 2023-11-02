@@ -2,13 +2,13 @@ create database if not exists `projet`;
 
 use `projet`;
 
-create or replace table Competence
+create table Competence
 (
     competence varchar(255) not null
         primary key
 );
 
-create or replace table Disponibilite
+create table Disponibilite
 (
     id        int  not null auto_increment
         primary key,
@@ -16,19 +16,19 @@ create or replace table Disponibilite
     dateFin   date null
 );
 
-create or replace table Niveau
+create table Niveau
 (
     niveau varchar(255) not null
         primary key
 );
 
-create or replace table Titre
+create table Titre
 (
     nomTitre varchar(255) not null
         primary key
 );
 
-create or replace table Utilisateur
+create table Utilisateur
 (
     id       int          not null auto_increment
         primary key,
@@ -38,7 +38,7 @@ create or replace table Utilisateur
     isValid   tinyint(1)   null
 );
 
-create or replace table Ecole
+create table Ecole
 (
     id            int          not null auto_increment
         primary key,
@@ -50,7 +50,7 @@ create or replace table Ecole
         foreign key (idUtilisateur) references Utilisateur (id)
 );
 
-create or replace table Enseignant
+create table Enseignant
 (
     id             int          not null auto_increment
         primary key,
@@ -71,7 +71,7 @@ create or replace table Enseignant
         check (`typeContrat` = 'Prestation' or `typeContrat` = 'Salarié')
 );
 
-create or replace table Offre
+create table Offre
 (
     id        int          not null auto_increment
         primary key,
@@ -85,13 +85,13 @@ create or replace table Offre
         foreign key (idEcole) references Ecole (id)
 );
 
-create or replace index idDispo
+create index idDispo
     on Offre (idDispo);
 
-create or replace index idEcole
+create index idEcole
     on Offre (idEcole);
 
-create or replace table candidate
+create table candidate
 (
     idEnseignant int          not null,
     idOffre      int          not null,
@@ -107,10 +107,10 @@ create or replace table candidate
         check (`decision` is null or `decision` = 'Retenu' or `decision` = 'Non retenu')
 );
 
-create or replace index idOffre
+create index idOffre
     on candidate (idOffre);
 
-create or replace table demande
+create table demande
 (
     competence varchar(255) not null,
     idOffre    int          not null,
@@ -121,10 +121,10 @@ create or replace table demande
         foreign key (idOffre) references Offre (id)
 );
 
-create or replace index idOffre
+create index idOffre
     on demande (idOffre);
 
-create or replace table dispo
+create table dispo
 (
     idEnseignant int not null,
     idDispo      int not null,
@@ -135,10 +135,10 @@ create or replace table dispo
         foreign key (idDispo) references Disponibilite (id)
 );
 
-create or replace index idDispo
+create index idDispo
     on dispo (idDispo);
 
-create or replace table evalue
+create table evalue
 (
     idEnseignant int          not null,
     idEcole      int          not null,
@@ -156,13 +156,13 @@ create or replace table evalue
         check (`note` >= 0 and `note` <= 5)
 );
 
-create or replace index competence
+create index competence
     on evalue (competence);
 
-create or replace index idEcole
+create index idEcole
     on evalue (idEcole);
 
-create or replace table interesse
+create table interesse
 (
     idEnseignant int not null,
     idEcole      int not null,
@@ -173,10 +173,10 @@ create or replace table interesse
         foreign key (idEcole) references Ecole (id)
 );
 
-create or replace index idEcole
+create index idEcole
     on interesse (idEcole);
 
-create or replace table jouit
+create table jouit
 (
     idEnseignant int          not null,
     nomTitre     varchar(255) not null,
@@ -187,10 +187,10 @@ create or replace table jouit
         foreign key (nomTitre) references Titre (nomTitre)
 );
 
-create or replace index nomTitre
+create index nomTitre
     on jouit (nomTitre);
 
-create or replace table possede
+create table possede
 (
     idEnseignant int          not null,
     competence   varchar(255) not null,
@@ -201,10 +201,10 @@ create or replace table possede
         foreign key (competence) references Competence (competence)
 );
 
-create or replace index competence
+create index competence
     on possede (competence);
 
-create or replace table recommandeEnseignant
+create table recommandeEnseignant
 (
     idEnseignant           int          not null,
     idEnseignantRecommande int          not null,
@@ -219,13 +219,13 @@ create or replace table recommandeEnseignant
         foreign key (competence) references Competence (competence)
 );
 
-create or replace index competence
+create index competence
     on recommandeEnseignant (competence);
 
-create or replace index idEnseignantRecommande
+create index idEnseignantRecommande
     on recommandeEnseignant (idEnseignantRecommande);
 
-create or replace table souhaite
+create table souhaite
 (
     idEnseignant int          not null,
     niveau       varchar(255) not null,
@@ -236,6 +236,6 @@ create or replace table souhaite
         foreign key (niveau) references Niveau (niveau)
 );
 
-create or replace index niveau
+create index niveau
     on souhaite (niveau);
 

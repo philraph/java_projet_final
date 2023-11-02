@@ -4,7 +4,7 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
-import net.efrei.java_projet_final.entities.CompetenceEntity;
+import net.efrei.java_projet_final.entities.Competence;
 
 import java.util.List;
 
@@ -12,17 +12,17 @@ import java.util.List;
 public class CompetenceBean {
 
     @PersistenceContext()
-    private EntityManager em = Persistence.createEntityManagerFactory("projet").createEntityManager();
+    private EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
 
-    public void create(CompetenceEntity competence) {
+    public void create(Competence competence) {
         em.persist(competence);
     }
 
-    public void update(CompetenceEntity competence) {
+    public void update(Competence competence) {
         em.merge(competence);
     }
 
-    public void delete(CompetenceEntity competence) {
+    public void delete(Competence competence) {
         if (em.contains(competence)) {
             em.remove(competence);
         } else {
@@ -30,16 +30,16 @@ public class CompetenceBean {
         }
     }
 
-    public CompetenceEntity findById(Integer id) {
-        return em.find(CompetenceEntity.class, id);
+    public Competence findById(Integer id) {
+        return em.find(Competence.class, id);
     }
 
-    public List<CompetenceEntity> findAll() {
-        return em.createNamedQuery("CompetenceEntity.findAll", CompetenceEntity.class).getResultList();
+    public List<Competence> findAll() {
+        return em.createNamedQuery("Competence.findAll", Competence.class).getResultList();
     }
 
-    public List<CompetenceEntity> findByCompetence(String competence) {
-        return em.createNamedQuery("CompetenceEntity.findByCompetence", CompetenceEntity.class).setParameter("competence", competence).getResultList();
+    public List<Competence> findByCompetence(String competence) {
+        return em.createNamedQuery("Competence.findByCompetence", Competence.class).setParameter("competence", competence).getResultList();
     }
 
 }

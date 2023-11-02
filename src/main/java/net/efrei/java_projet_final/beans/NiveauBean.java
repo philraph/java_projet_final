@@ -4,7 +4,7 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
-import net.efrei.java_projet_final.entities.NiveauEntity;
+import net.efrei.java_projet_final.entities.Niveau;
 
 import java.util.List;
 
@@ -12,17 +12,17 @@ import java.util.List;
 public class NiveauBean {
 
     @PersistenceContext()
-    private EntityManager em = Persistence.createEntityManagerFactory("projet").createEntityManager();
+    private EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
 
-    public void create(NiveauEntity niveau) {
+    public void create(Niveau niveau) {
         em.persist(niveau);
     }
 
-    public void update(NiveauEntity niveau) {
+    public void update(Niveau niveau) {
         em.merge(niveau);
     }
 
-    public void delete(NiveauEntity niveau) {
+    public void delete(Niveau niveau) {
         if (em.contains(niveau)) {
             em.remove(niveau);
         } else {
@@ -30,16 +30,16 @@ public class NiveauBean {
         }
     }
 
-    public NiveauEntity findByNiveau(String niveau) {
-        List<NiveauEntity> result = em.createNamedQuery("NiveauEntity.findByNiveau", NiveauEntity.class).setParameter("niveau", niveau).getResultList();
+    public Niveau findByNiveau(String niveau) {
+        List<Niveau> result = em.createNamedQuery("Niveau.findByNiveau", Niveau.class).setParameter("niveau", niveau).getResultList();
         if (result.isEmpty()) {
             return null;
         }
         return result.get(0);
     }
 
-    public List<NiveauEntity> findAll() {
-        return em.createNamedQuery("NiveauEntity.findAll", NiveauEntity.class).getResultList();
+    public List<Niveau> findAll() {
+        return em.createNamedQuery("Niveau.findAll", Niveau.class).getResultList();
     }
 
 }

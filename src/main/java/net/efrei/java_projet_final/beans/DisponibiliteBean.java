@@ -4,7 +4,7 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
-import net.efrei.java_projet_final.entities.DisponibiliteEntity;
+import net.efrei.java_projet_final.entities.Disponibilite;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,17 +13,17 @@ import java.util.List;
 public class DisponibiliteBean {
 
     @PersistenceContext()
-    private EntityManager em = Persistence.createEntityManagerFactory("projet").createEntityManager();
+    private EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
 
-    public void create(DisponibiliteEntity disponibilite) {
+    public void create(Disponibilite disponibilite) {
         em.persist(disponibilite);
     }
 
-    public void update(DisponibiliteEntity disponibilite) {
+    public void update(Disponibilite disponibilite) {
         em.merge(disponibilite);
     }
 
-    public void delete(DisponibiliteEntity disponibilite) {
+    public void delete(Disponibilite disponibilite) {
         if (em.contains(disponibilite)) {
             em.remove(disponibilite);
         } else {
@@ -31,23 +31,23 @@ public class DisponibiliteBean {
         }
     }
 
-    public List<DisponibiliteEntity> findAll() {
-        return em.createNamedQuery("DisponibiliteEntity.findAll", DisponibiliteEntity.class).getResultList();
+    public List<Disponibilite> findAll() {
+        return em.createNamedQuery("Disponibilite.findAll", Disponibilite.class).getResultList();
     }
 
-    public List<DisponibiliteEntity> findByDateDebut(LocalDate dateDebut) {
-        return em.createNamedQuery("DisponibiliteEntity.findByDateDebut", DisponibiliteEntity.class)
+    public List<Disponibilite> findByDateDebut(LocalDate dateDebut) {
+        return em.createNamedQuery("Disponibilite.findByDateDebut", Disponibilite.class)
                 .setParameter("dateDebut", dateDebut)
                 .getResultList();
     }
 
-    public List<DisponibiliteEntity> findByDateFin(LocalDate dateFin) {
-        return em.createNamedQuery("DisponibiliteEntity.findByDateFin", DisponibiliteEntity.class)
+    public List<Disponibilite> findByDateFin(LocalDate dateFin) {
+        return em.createNamedQuery("Disponibilite.findByDateFin", Disponibilite.class)
                 .setParameter("dateFin", dateFin)
                 .getResultList();
     }
 
-    public DisponibiliteEntity findById(Integer id) {
-        return em.find(DisponibiliteEntity.class, id);
+    public Disponibilite findById(Integer id) {
+        return em.find(Disponibilite.class, id);
     }
 }

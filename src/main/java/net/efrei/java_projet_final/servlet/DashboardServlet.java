@@ -9,7 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import net.efrei.java_projet_final.entities.UtilisateurEntity;
+import net.efrei.java_projet_final.entities.Utilisateur;
 import net.efrei.java_projet_final.services.UtilisateurService;
 
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class DashboardServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("/dashboard.jsp");
 
-        UtilisateurEntity user = (UtilisateurEntity) session.getAttribute("user");
+        Utilisateur user = (Utilisateur) session.getAttribute("user");
         req.setAttribute("username", user.getUsername());
 
         dispatcher.forward(req, resp);

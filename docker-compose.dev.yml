@@ -2,15 +2,30 @@ version: '3.8'
 
 services:
   db:
-    image: mariadb
+    image: mysql:8.0.31
     restart: always
     ports:
       - "3306:3306"
     environment:
-      MARIADB_ROOT_PASSWORD: maria
+      MYSQL_DATABASE: projet
+      MYSQL_USER: projet
+      MYSQL_PASSWORD: projet
+      MYSQL_ROOT_PASSWORD: root
     volumes:
       - db:/var/lib/mysql
       - ./db-init.d:/docker-entrypoint-initdb.d
+    networks:
+      - local
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    networks:
+      - local
+    environment:
+      - PMA_ARBITRARY=1
 
   wildfly:
     image: quay.io/wildfly/wildfly:latest-jdk17
@@ -24,6 +39,11 @@ services:
       - DB_PORT=3306
       - DB_USER=root
       - DB_PASS=maria
+    networks:
+      - local
 
 volumes:
   db:
+
+networks:
+  local:

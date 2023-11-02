@@ -4,7 +4,8 @@ import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
-import net.efrei.java_projet_final.entities.UtilisateurEntity;
+import net.efrei.java_projet_final.entities.Utilisateur;
+import net.efrei.java_projet_final.entities.Utilisateur;
 
 import java.util.List;
 
@@ -12,17 +13,17 @@ import java.util.List;
 public class UtilisateurBean {
 
     @PersistenceContext()
-    private EntityManager em = Persistence.createEntityManagerFactory("projet").createEntityManager();
+    private EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
 
-    public void create(UtilisateurEntity utilisateur) {
+    public void create(Utilisateur utilisateur) {
         em.persist(utilisateur);
     }
 
-    public void update(UtilisateurEntity utilisateur) {
+    public void update(Utilisateur utilisateur) {
         em.merge(utilisateur);
     }
 
-    public void delete(UtilisateurEntity utilisateur) {
+    public void delete(Utilisateur utilisateur) {
         if (em.contains(utilisateur)) {
             em.remove(utilisateur);
         } else {
@@ -30,34 +31,34 @@ public class UtilisateurBean {
         }
     }
 
-    public UtilisateurEntity findById(Object id) {
-        return em.find(UtilisateurEntity.class, id);
+    public Utilisateur findById(Object id) {
+        return em.find(Utilisateur.class, id);
     }
 
-    public List<UtilisateurEntity> findAll() {
-        return em.createNamedQuery("UtilisateurEntity.findAll", UtilisateurEntity.class).getResultList();
+    public List<Utilisateur> findAll() {
+        return em.createNamedQuery("Utilisateur.findAll", Utilisateur.class).getResultList();
     }
 
-    public UtilisateurEntity findByUsername(String username) {
-        return em.createNamedQuery("UtilisateurEntity.findByUsername", UtilisateurEntity.class)
+    public Utilisateur findByUsername(String username) {
+        return em.createNamedQuery("Utilisateur.findByUsername", Utilisateur.class)
                 .setParameter("username", username)
                 .getSingleResult();
     }
 
-    public List<UtilisateurEntity> findByIsAdmin(Boolean isAdmin) {
-        return em.createNamedQuery("UtilisateurEntity.findByIsAdmin", UtilisateurEntity.class)
+    public List<Utilisateur> findByIsAdmin(Boolean isAdmin) {
+        return em.createNamedQuery("Utilisateur.findByIsAdmin", Utilisateur.class)
                 .setParameter("isAdmin", isAdmin)
                 .getResultList();
     }
 
-    public List<UtilisateurEntity> findByIsValid(Boolean isValid) {
-        return em.createNamedQuery("UtilisateurEntity.findByIsValid", UtilisateurEntity.class)
+    public List<Utilisateur> findByIsValid(Boolean isValid) {
+        return em.createNamedQuery("Utilisateur.findByIsValid", Utilisateur.class)
                 .setParameter("isValid", isValid)
                 .getResultList();
     }
 
-    public List<UtilisateurEntity> findByUsernameAndStatus(String username, Boolean isAdmin, Boolean isValid) {
-        return em.createNamedQuery("UtilisateurEntity.findByUsernameAndStatus", UtilisateurEntity.class)
+    public List<Utilisateur> findByUsernameAndStatus(String username, Boolean isAdmin, Boolean isValid) {
+        return em.createNamedQuery("Utilisateur.findByUsernameAndStatus", Utilisateur.class)
                 .setParameter("username", username)
                 .setParameter("isAdmin", isAdmin)
                 .setParameter("isValid", isValid)

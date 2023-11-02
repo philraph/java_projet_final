@@ -5,9 +5,9 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
-import net.efrei.java_projet_final.entities.EnseignantEntity;
-import net.efrei.java_projet_final.entities.OffreEntity;
-import net.efrei.java_projet_final.entities.associations.CandidateEntity;
+import net.efrei.java_projet_final.entities.Candidate;
+import net.efrei.java_projet_final.entities.Enseignant;
+import net.efrei.java_projet_final.entities.Offre;
 
 import java.util.List;
 
@@ -15,56 +15,56 @@ import java.util.List;
 public class CandidateBean {
 
     @PersistenceContext()
-    private EntityManager em = Persistence.createEntityManagerFactory("projet").createEntityManager();
+    private EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
 
-    public void create(CandidateEntity candidate) {
+    public void create(Candidate candidate) {
         em.persist(candidate);
     }
 
-    public void update(CandidateEntity candidate) {
+    public void update(Candidate candidate) {
         em.merge(candidate);
     }
 
-    public void delete(CandidateEntity candidate) {
+    public void delete(Candidate candidate) {
         em.remove(candidate);
     }
 
-    public List<CandidateEntity> findAll() {
-        return em.createNamedQuery("CandidateEntity.findAll", CandidateEntity.class).getResultList();
+    public List<Candidate> findAll() {
+        return em.createNamedQuery("Candidate.findAll", Candidate.class).getResultList();
     }
 
-    public CandidateEntity findById(Integer id) {
-        return em.find(CandidateEntity.class, id);
+    public Candidate findById(Integer id) {
+        return em.find(Candidate.class, id);
     }
 
-    public CandidateEntity findByEnseignant(EnseignantEntity enseignant) {
-        TypedQuery<CandidateEntity> query = em.createNamedQuery("CandidateEntity.findByEnseignant", CandidateEntity.class);
+    public Candidate findByEnseignant(Enseignant enseignant) {
+        TypedQuery<Candidate> query = em.createNamedQuery("Candidate.findByEnseignant", Candidate.class);
         query.setParameter("enseignant", enseignant);
-        List<CandidateEntity> results = query.getResultList();
+        List<Candidate> results = query.getResultList();
         return results.isEmpty() ? null : results.get(0);
     }
 
-    public CandidateEntity findByOffre(OffreEntity offre) {
-        TypedQuery<CandidateEntity> query = em.createNamedQuery("CandidateEntity.findByOffre", CandidateEntity.class);
+    public Candidate findByOffre(Offre offre) {
+        TypedQuery<Candidate> query = em.createNamedQuery("Candidate.findByOffre", Candidate.class);
         query.setParameter("offre", offre);
-        List<CandidateEntity> results = query.getResultList();
+        List<Candidate> results = query.getResultList();
         return results.isEmpty() ? null : results.get(0);
     }
 
-    public List<CandidateEntity> findByContactPar(String contactPar) {
-        TypedQuery<CandidateEntity> query = em.createNamedQuery("CandidateEntity.findByContactPar", CandidateEntity.class);
+    public List<Candidate> findByContactPar(String contactPar) {
+        TypedQuery<Candidate> query = em.createNamedQuery("Candidate.findByContactPar", Candidate.class);
         query.setParameter("contactPar", contactPar);
         return query.getResultList();
     }
 
-    public List<CandidateEntity> findByContactLe(String contactLe) {
-        TypedQuery<CandidateEntity> query = em.createNamedQuery("CandidateEntity.findByContactLe", CandidateEntity.class);
+    public List<Candidate> findByContactLe(String contactLe) {
+        TypedQuery<Candidate> query = em.createNamedQuery("Candidate.findByContactLe", Candidate.class);
         query.setParameter("contactLe", contactLe);
         return query.getResultList();
     }
 
-    public List<CandidateEntity> findByDecision(String decision) {
-        TypedQuery<CandidateEntity> query = em.createNamedQuery("CandidateEntity.findByDecision", CandidateEntity.class);
+    public List<Candidate> findByDecision(String decision) {
+        TypedQuery<Candidate> query = em.createNamedQuery("Candidate.findByDecision", Candidate.class);
         query.setParameter("decision", decision);
         return query.getResultList();
     }
