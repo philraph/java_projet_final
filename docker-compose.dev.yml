@@ -7,9 +7,6 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_DATABASE: projet
-      MYSQL_USER: projet
-      MYSQL_PASSWORD: projet
       MYSQL_ROOT_PASSWORD: root
     volumes:
       - db:/var/lib/mysql
@@ -24,6 +21,8 @@ services:
       - "8081:80"
     networks:
       - local
+    depends_on:
+      - db
     environment:
       - PMA_ARBITRARY=1
 
@@ -31,14 +30,10 @@ services:
     image: quay.io/wildfly/wildfly:latest-jdk17
     ports:
       - "8080:8080"
+    depends_on:
+      - db
     volumes:
       - ./build/exploded:/opt/jboss/wildfly/standalone/deployments:rw
-#      - ./docker/standalone.xml:/opt/jboss/wildfly/standalone/configuration/standalone.xml:ro
-    environment:
-      - DB_ADDR=db
-      - DB_PORT=3306
-      - DB_USER=root
-      - DB_PASS=maria
     networks:
       - local
 
