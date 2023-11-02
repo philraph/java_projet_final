@@ -12,7 +12,7 @@ import java.util.List;
 public class TitreBean {
 
     @PersistenceContext()
-    private EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
+    private EntityManager em;
 
     public void create(Titre titre) {
         em.persist(titre);

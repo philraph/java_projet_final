@@ -14,7 +14,7 @@ import java.util.List;
 public class OffreBean {
 
     @PersistenceContext()
-    private EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
+    private EntityManager em;
 
     public void create(Offre offre) {
         em.persist(offre);

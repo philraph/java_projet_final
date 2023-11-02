@@ -12,7 +12,7 @@ import java.util.List;
 public class NiveauBean {
 
     @PersistenceContext()
-    private EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
+    private EntityManager em;
 
     public void create(Niveau niveau) {
         em.persist(niveau);

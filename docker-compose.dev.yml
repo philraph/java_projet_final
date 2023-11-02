@@ -1,13 +1,16 @@
 version: '3.8'
 
 services:
-  db:
-    image: mysql:8.0.31
+  mysql:
+    image: mysql:latest
     restart: always
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_DATABASE: 'projet'
+      MYSQL_USER: 'projet'
+      MYSQL_PASSWORD: 'projet'
     volumes:
       - db:/var/lib/mysql
       - ./db-init.d:/docker-entrypoint-initdb.d
@@ -22,20 +25,21 @@ services:
     networks:
       - local
     depends_on:
-      - db
+      - mysql
     environment:
       - PMA_ARBITRARY=1
 
-  wildfly:
-    image: quay.io/wildfly/wildfly:latest-jdk17
-    ports:
-      - "8080:8080"
-    depends_on:
-      - db
-    volumes:
-      - ./build/exploded:/opt/jboss/wildfly/standalone/deployments:rw
-    networks:
-      - local
+#  wildfly:
+#    image: quay.io/wildfly/wildfly:latest-jdk17
+#    ports:
+#      - "8080:8080"
+#      - "9990:9990"
+#    depends_on:
+#      - mysql
+#    volumes:
+#      - ./build/exploded:/opt/jboss/wildfly/standalone/deployments:rw
+#    networks:
+#      - local
 
 volumes:
   db:

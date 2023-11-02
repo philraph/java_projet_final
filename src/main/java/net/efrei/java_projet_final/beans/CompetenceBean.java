@@ -12,7 +12,7 @@ import java.util.List;
 public class CompetenceBean {
 
     @PersistenceContext()
-    private EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
+    private EntityManager em;
 
     public void create(Competence competence) {
         em.persist(competence);

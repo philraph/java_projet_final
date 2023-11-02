@@ -13,7 +13,7 @@ import java.util.List;
 public class DisponibiliteBean {
 
     @PersistenceContext()
-    private EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
+    private EntityManager em;
 
     public void create(Disponibilite disponibilite) {
         em.persist(disponibilite);

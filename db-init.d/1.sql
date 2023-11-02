@@ -1,4 +1,4 @@
-create database if not exists `projet`;
+create schema if not exists `projet`;
 
 use `projet`;
 

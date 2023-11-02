@@ -16,7 +16,7 @@ import java.util.List;
 public class EvalueBean {
 
     @PersistenceContext()
-    private EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
+    private EntityManager em;
 
     public void create(Evalue evalue) {
         em.persist(evalue);

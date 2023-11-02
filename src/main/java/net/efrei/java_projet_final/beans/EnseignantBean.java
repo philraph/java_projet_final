@@ -13,7 +13,7 @@ import java.util.List;
 public class EnseignantBean {
 
     @PersistenceContext()
-    private EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
+    private EntityManager em;
 
     public void create(Enseignant enseignant) {
         em.persist(enseignant);

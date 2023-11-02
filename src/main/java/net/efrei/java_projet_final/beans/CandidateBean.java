@@ -15,7 +15,7 @@ import java.util.List;
 public class CandidateBean {
 
     @PersistenceContext()
-    private EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
+    private EntityManager em;
 
     public void create(Candidate candidate) {
         em.persist(candidate);
