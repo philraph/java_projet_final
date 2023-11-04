@@ -1,33 +1,30 @@
 package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.PersistenceContext;
 import net.efrei.java_projet_final.entities.Niveau;
+import net.efrei.java_projet_final.utils.TransactionalOperation;
 
 import java.util.List;
 
 @Stateless
-public class NiveauBean {
-
-    @PersistenceContext()
-    private EntityManager em;
+public class NiveauBean extends AbstractBean {
 
     public void create(Niveau niveau) {
-        em.persist(niveau);
+        TransactionalOperation.execute(em, () -> em.persist(niveau));
     }
 
     public void update(Niveau niveau) {
-        em.merge(niveau);
+        TransactionalOperation.execute(em, () -> em.merge(niveau));
     }
 
     public void delete(Niveau niveau) {
-        if (em.contains(niveau)) {
-            em.remove(niveau);
-        } else {
-            em.remove(em.merge(niveau));
-        }
+        TransactionalOperation.execute(em, () -> {
+            if (em.contains(niveau)) {
+                em.remove(niveau);
+            } else {
+                em.remove(em.merge(niveau));
+            }
+        });
     }
 
     public Niveau findByNiveau(String niveau) {

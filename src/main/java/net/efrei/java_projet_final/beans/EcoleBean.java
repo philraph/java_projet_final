@@ -1,34 +1,32 @@
 package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import net.efrei.java_projet_final.entities.Ecole;
+import net.efrei.java_projet_final.utils.TransactionalOperation;
 
 import java.util.List;
 
 @Stateless
-public class EcoleBean {
-
-    @PersistenceContext()
-    private EntityManager em;
+public class EcoleBean extends AbstractBean {
 
     public void create(Ecole ecole) {
         em.persist(ecole);
+        TransactionalOperation.execute(em, () -> em.persist(ecole));
     }
 
     public void update(Ecole ecole) {
-        em.merge(ecole);
+        TransactionalOperation.execute(em, () -> em.merge(ecole));
     }
 
     public void delete(Ecole ecole) {
-        if (em.contains(ecole)) {
-            em.remove(ecole);
-        } else {
-            em.remove(em.merge(ecole));
-        }
+        TransactionalOperation.execute(em, () -> {
+            if (em.contains(ecole)) {
+                em.remove(ecole);
+            } else {
+                em.remove(em.merge(ecole));
+            }
+        });
     }
 
     public List<Ecole> findAll() {

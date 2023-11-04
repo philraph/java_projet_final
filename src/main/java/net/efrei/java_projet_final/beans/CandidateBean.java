@@ -1,33 +1,35 @@
 package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import net.efrei.java_projet_final.entities.Candidate;
 import net.efrei.java_projet_final.entities.Enseignant;
 import net.efrei.java_projet_final.entities.Offre;
+import net.efrei.java_projet_final.utils.TransactionalOperation;
 
 import java.util.List;
 
 @Stateless
-public class CandidateBean {
-
-    @PersistenceContext()
-    private EntityManager em;
+public class CandidateBean extends AbstractBean {
 
     public void create(Candidate candidate) {
-        em.persist(candidate);
+        TransactionalOperation.execute(em, () -> em.persist(candidate));
     }
 
     public void update(Candidate candidate) {
-        em.merge(candidate);
+        TransactionalOperation.execute(em, () -> em.merge(candidate));
     }
 
     public void delete(Candidate candidate) {
-        em.remove(candidate);
+        TransactionalOperation.execute(em, () -> {
+            if (em.contains(candidate)) {
+                em.remove(candidate);
+            } else {
+                em.remove(em.merge(candidate));
+            }
+        });
     }
+
 
     public List<Candidate> findAll() {
         return em.createNamedQuery("Candidate.findAll", Candidate.class).getResultList();

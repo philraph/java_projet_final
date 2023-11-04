@@ -1,33 +1,30 @@
 package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.PersistenceContext;
 import net.efrei.java_projet_final.entities.Competence;
+import net.efrei.java_projet_final.utils.TransactionalOperation;
 
 import java.util.List;
 
 @Stateless
-public class CompetenceBean {
-
-    @PersistenceContext()
-    private EntityManager em;
+public class CompetenceBean extends AbstractBean {
 
     public void create(Competence competence) {
-        em.persist(competence);
+        TransactionalOperation.execute(em, () -> em.persist(competence));
     }
 
     public void update(Competence competence) {
-        em.merge(competence);
+        TransactionalOperation.execute(em, () -> em.merge(competence));
     }
 
     public void delete(Competence competence) {
-        if (em.contains(competence)) {
-            em.remove(competence);
-        } else {
-            em.remove(em.merge(competence));
-        }
+        TransactionalOperation.execute(em, () -> {
+            if (em.contains(competence)) {
+                em.remove(competence);
+            } else {
+                em.remove(em.merge(competence));
+            }
+        });
     }
 
     public Competence findById(Integer id) {

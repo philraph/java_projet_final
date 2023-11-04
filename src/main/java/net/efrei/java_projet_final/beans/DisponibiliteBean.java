@@ -1,34 +1,31 @@
 package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.PersistenceContext;
 import net.efrei.java_projet_final.entities.Disponibilite;
+import net.efrei.java_projet_final.utils.TransactionalOperation;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Stateless
-public class DisponibiliteBean {
-
-    @PersistenceContext()
-    private EntityManager em;
+public class DisponibiliteBean extends AbstractBean {
 
     public void create(Disponibilite disponibilite) {
-        em.persist(disponibilite);
+        TransactionalOperation.execute(em, () -> em.persist(disponibilite));
     }
 
     public void update(Disponibilite disponibilite) {
-        em.merge(disponibilite);
+        TransactionalOperation.execute(em, () -> em.merge(disponibilite));
     }
 
     public void delete(Disponibilite disponibilite) {
-        if (em.contains(disponibilite)) {
-            em.remove(disponibilite);
-        } else {
-            em.remove(em.merge(disponibilite));
-        }
+        TransactionalOperation.execute(em, () -> {
+            if (em.contains(disponibilite)) {
+                em.remove(disponibilite);
+            } else {
+                em.remove(em.merge(disponibilite));
+            }
+        });
     }
 
     public List<Disponibilite> findAll() {

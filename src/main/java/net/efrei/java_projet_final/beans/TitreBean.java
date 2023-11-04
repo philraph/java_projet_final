@@ -2,32 +2,33 @@ package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 import jakarta.persistence.PersistenceContext;
 import net.efrei.java_projet_final.entities.Titre;
+import net.efrei.java_projet_final.utils.TransactionalOperation;
 
 import java.util.List;
 
 @Stateless
-public class TitreBean {
-
-    @PersistenceContext()
-    private EntityManager em;
+public class TitreBean extends AbstractBean {
 
     public void create(Titre titre) {
-        em.persist(titre);
+        TransactionalOperation.execute(em, () -> em.persist(titre));
     }
 
     public void update(Titre titre) {
-        em.merge(titre);
+        TransactionalOperation.execute(em, () -> em.merge(titre));
     }
 
     public void delete(Titre titre) {
-        if (em.contains(titre)) {
-            em.remove(titre);
-        } else {
-            em.remove(em.merge(titre));
-        }
+        TransactionalOperation.execute(em, () -> {
+            if (em.contains(titre)) {
+                em.remove(titre);
+            } else {
+                em.remove(em.merge(titre));
+            }
+        });
     }
 
     public Titre findByNomTitre(String nomTitre) {

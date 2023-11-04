@@ -1,35 +1,32 @@
 package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 import net.efrei.java_projet_final.entities.Ecole;
 import net.efrei.java_projet_final.entities.Offre;
+import net.efrei.java_projet_final.utils.TransactionalOperation;
 
 import java.util.List;
 
 @Stateless
-public class OffreBean {
-
-    @PersistenceContext()
-    private EntityManager em;
+public class OffreBean extends AbstractBean {
 
     public void create(Offre offre) {
-        em.persist(offre);
+        TransactionalOperation.execute(em, () -> em.persist(offre));
     }
 
     public void update(Offre offre) {
-        em.merge(offre);
+        TransactionalOperation.execute(em, () -> em.merge(offre));
     }
 
     public void delete(Offre offre) {
-        if (em.contains(offre)) {
-            em.remove(offre);
-        } else {
-            em.remove(em.merge(offre));
-        }
+        TransactionalOperation.execute(em, () -> {
+            if (em.contains(offre)) {
+                em.remove(offre);
+            } else {
+                em.remove(em.merge(offre));
+            }
+        });
     }
 
     public List<Offre> findAll() {

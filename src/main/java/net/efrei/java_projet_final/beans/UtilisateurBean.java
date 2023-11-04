@@ -1,34 +1,31 @@
 package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
-import jakarta.persistence.PersistenceContext;
 import net.efrei.java_projet_final.entities.Utilisateur;
-import net.efrei.java_projet_final.entities.Utilisateur;
+import net.efrei.java_projet_final.utils.TransactionalOperation;
 
 import java.util.List;
 
 @Stateless
-public class UtilisateurBean {
+public class UtilisateurBean extends AbstractBean {
 
-    @PersistenceContext()
-    private EntityManager em = Persistence.createEntityManagerFactory("default").createEntityManager();
 
     public void create(Utilisateur utilisateur) {
-        em.persist(utilisateur);
+        TransactionalOperation.execute(em, () -> em.persist(utilisateur));
     }
 
     public void update(Utilisateur utilisateur) {
-        em.merge(utilisateur);
+        TransactionalOperation.execute(em, () -> em.merge(utilisateur));
     }
 
     public void delete(Utilisateur utilisateur) {
-        if (em.contains(utilisateur)) {
-            em.remove(utilisateur);
-        } else {
-            em.remove(em.merge(utilisateur));
-        }
+        TransactionalOperation.execute(em, () -> {
+            if (em.contains(utilisateur)) {
+                em.remove(utilisateur);
+            } else {
+                em.remove(em.merge(utilisateur));
+            }
+        });
     }
 
     public Utilisateur findById(Object id) {

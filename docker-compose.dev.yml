@@ -7,42 +7,41 @@ services:
     ports:
       - "3306:3306"
     environment:
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
       MYSQL_DATABASE: 'projet'
-      MYSQL_USER: 'projet'
-      MYSQL_PASSWORD: 'projet'
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
     volumes:
       - db:/var/lib/mysql
       - ./db-init.d:/docker-entrypoint-initdb.d
     networks:
-      - local
+      - mynetwork
 
   phpmyadmin:
     image: phpmyadmin
     restart: always
     ports:
       - "8081:80"
-    networks:
-      - local
     depends_on:
       - mysql
     environment:
       - PMA_ARBITRARY=1
+    networks:
+      - mynetwork
 
-#  wildfly:
-#    image: quay.io/wildfly/wildfly:latest-jdk17
-#    ports:
-#      - "8080:8080"
-#      - "9990:9990"
-#    depends_on:
-#      - mysql
-#    volumes:
-#      - ./build/exploded:/opt/jboss/wildfly/standalone/deployments:rw
-#    networks:
-#      - local
+  wildfly:
+    image: quay.io/wildfly/wildfly:latest-jdk17
+    ports:
+      - "8080:8080"
+      - "9990:9990"
+    depends_on:
+      - mysql
+    volumes:
+      - ./build/exploded:/opt/jboss/wildfly/standalone/deployments:rw
+    networks:
+      - mynetwork
 
 volumes:
   db:
 
 networks:
-  local:
+  mynetwork:
+    driver: bridge
