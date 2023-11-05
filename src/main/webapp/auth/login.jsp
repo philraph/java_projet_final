@@ -18,15 +18,15 @@
 
 <div class="container">
     <h2>Connexion</h2>
-    <form action="/api/login" method="post">
+    <form x-on:submit.prevent="submitForm" x-data="loginForm()">
         <div class="form-group">
             <label for="username">Nom d'utilisateur</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="username" name="username" x-model="username" required>
         </div>
 
         <div class="form-group">
             <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" name="password" x-model="password" required>
         </div>
 
         <div class="form-group">
@@ -34,9 +34,38 @@
         </div>
 
         <p>Pas encore de compte ? <a href="/auth/register.jsp">S'inscrire</a></p>
-
     </form>
 </div>
+
+
+<script>
+    function loginForm() {
+        return {
+            formData: {
+                username: '',
+                password: ''
+            },
+            submitForm() {
+                let formData = new FormData();
+                formData.append('username', this.username);
+                formData.append('password', this.password);
+
+                fetch('/api/login', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(() => window.location.href = '/dashboard')
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+    }
+</script>
 
 </body>
 </html>
