@@ -8,25 +8,7 @@ import net.efrei.java_projet_final.utils.TransactionalOperation;
 import java.util.List;
 
 @Stateless
-public class EnseignantBean extends AbstractBean {
-
-    public void create(Enseignant enseignant) {
-        TransactionalOperation.execute(em, () -> em.persist(enseignant));
-    }
-
-    public void update(Enseignant enseignant) {
-        TransactionalOperation.execute(em, () -> em.merge(enseignant));
-    }
-
-    public void delete(Enseignant enseignant) {
-        TransactionalOperation.execute(em, () -> {
-            if (em.contains(enseignant)) {
-                em.remove(enseignant);
-            } else {
-                em.remove(em.merge(enseignant));
-            }
-        });
-    }
+public class EnseignantBean extends AbstractBean<Enseignant> {
 
     public List<Enseignant> findAll() {
         TypedQuery<Enseignant> query = em.createNamedQuery("Enseignant.findAll", Enseignant.class);

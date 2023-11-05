@@ -9,25 +9,7 @@ import net.efrei.java_projet_final.utils.TransactionalOperation;
 import java.util.List;
 
 @Stateless
-public class OffreBean extends AbstractBean {
-
-    public void create(Offre offre) {
-        TransactionalOperation.execute(em, () -> em.persist(offre));
-    }
-
-    public void update(Offre offre) {
-        TransactionalOperation.execute(em, () -> em.merge(offre));
-    }
-
-    public void delete(Offre offre) {
-        TransactionalOperation.execute(em, () -> {
-            if (em.contains(offre)) {
-                em.remove(offre);
-            } else {
-                em.remove(em.merge(offre));
-            }
-        });
-    }
+public class OffreBean extends AbstractBean<Offre> {
 
     public List<Offre> findAll() {
         TypedQuery<Offre> query = em.createNamedQuery("Offre.findAll", Offre.class);

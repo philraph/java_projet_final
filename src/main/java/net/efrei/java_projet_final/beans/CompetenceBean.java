@@ -7,25 +7,7 @@ import net.efrei.java_projet_final.utils.TransactionalOperation;
 import java.util.List;
 
 @Stateless
-public class CompetenceBean extends AbstractBean {
-
-    public void create(Competence competence) {
-        TransactionalOperation.execute(em, () -> em.persist(competence));
-    }
-
-    public void update(Competence competence) {
-        TransactionalOperation.execute(em, () -> em.merge(competence));
-    }
-
-    public void delete(Competence competence) {
-        TransactionalOperation.execute(em, () -> {
-            if (em.contains(competence)) {
-                em.remove(competence);
-            } else {
-                em.remove(em.merge(competence));
-            }
-        });
-    }
+public class CompetenceBean extends AbstractBean<Competence> {
 
     public Competence findById(Integer id) {
         return em.find(Competence.class, id);

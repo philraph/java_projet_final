@@ -10,26 +10,7 @@ import net.efrei.java_projet_final.utils.TransactionalOperation;
 import java.util.List;
 
 @Stateless
-public class CandidateBean extends AbstractBean {
-
-    public void create(Candidate candidate) {
-        TransactionalOperation.execute(em, () -> em.persist(candidate));
-    }
-
-    public void update(Candidate candidate) {
-        TransactionalOperation.execute(em, () -> em.merge(candidate));
-    }
-
-    public void delete(Candidate candidate) {
-        TransactionalOperation.execute(em, () -> {
-            if (em.contains(candidate)) {
-                em.remove(candidate);
-            } else {
-                em.remove(em.merge(candidate));
-            }
-        });
-    }
-
+public class CandidateBean extends AbstractBean<Candidate> {
 
     public List<Candidate> findAll() {
         return em.createNamedQuery("Candidate.findAll", Candidate.class).getResultList();

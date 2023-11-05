@@ -2,31 +2,11 @@ package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
 import net.efrei.java_projet_final.entities.Utilisateur;
-import net.efrei.java_projet_final.utils.TransactionalOperation;
 
 import java.util.List;
 
 @Stateless
-public class UtilisateurBean extends AbstractBean {
-
-
-    public void create(Utilisateur utilisateur) {
-        TransactionalOperation.execute(em, () -> em.persist(utilisateur));
-    }
-
-    public void update(Utilisateur utilisateur) {
-        TransactionalOperation.execute(em, () -> em.merge(utilisateur));
-    }
-
-    public void delete(Utilisateur utilisateur) {
-        TransactionalOperation.execute(em, () -> {
-            if (em.contains(utilisateur)) {
-                em.remove(utilisateur);
-            } else {
-                em.remove(em.merge(utilisateur));
-            }
-        });
-    }
+public class UtilisateurBean extends AbstractBean<Utilisateur> {
 
     public Utilisateur findById(Object id) {
         return em.find(Utilisateur.class, id);

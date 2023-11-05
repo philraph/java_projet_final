@@ -1,6 +1,7 @@
 package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
+import net.efrei.java_projet_final.entities.Dispo;
 import net.efrei.java_projet_final.entities.Disponibilite;
 import net.efrei.java_projet_final.utils.TransactionalOperation;
 
@@ -8,25 +9,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Stateless
-public class DisponibiliteBean extends AbstractBean {
-
-    public void create(Disponibilite disponibilite) {
-        TransactionalOperation.execute(em, () -> em.persist(disponibilite));
-    }
-
-    public void update(Disponibilite disponibilite) {
-        TransactionalOperation.execute(em, () -> em.merge(disponibilite));
-    }
-
-    public void delete(Disponibilite disponibilite) {
-        TransactionalOperation.execute(em, () -> {
-            if (em.contains(disponibilite)) {
-                em.remove(disponibilite);
-            } else {
-                em.remove(em.merge(disponibilite));
-            }
-        });
-    }
+public class DisponibiliteBean extends AbstractBean<Disponibilite> {
 
     public List<Disponibilite> findAll() {
         return em.createNamedQuery("Disponibilite.findAll", Disponibilite.class).getResultList();
