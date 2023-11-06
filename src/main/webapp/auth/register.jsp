@@ -11,7 +11,13 @@
 
 <div class="container">
     <h2>Inscription</h2>
-    <form x-on:submit.prevent="submitForm" method="post" x-data="registerForm()">
+    <form action="/register" method="post" x-data="{
+    accountType: '',
+    acceptedTerms: false,
+    password: '',
+    passwordConfirm: '',
+    validatePasswords() { return this.password === this.passwordConfirm && this.password !== ''}
+}">
         <div class="form-group">
             <label for="username">Nom d'utilisateur</label>
             <input type="text" id="username" name="username" required>
@@ -41,9 +47,6 @@
                 <option value="ecole">
                     Je suis une école
                 </option>
-                <option value="admin">
-                    Je suis un administrateur
-                </option>
             </select>
         </div>
 
@@ -57,7 +60,7 @@
                     J'accepte les Conditions Generales d'Utilisation <span style="color: red">*</span>
                 </label>
             </fieldset>
-            <button type="submit" :disabled="!acceptedTerms || !validatePasswords())">S'inscrire</button>
+            <button type="submit" :disabled="!acceptedTerms || !validatePasswords()">S'inscrire</button>
         </div>
 
     </form>

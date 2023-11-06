@@ -75,6 +75,7 @@ create table Offre
 (
     id        int          not null auto_increment
         primary key,
+    intitule  varchar(255) null,
     exigences varchar(255) null,
     remarques varchar(255) null,
     idDispo   int          not null,
