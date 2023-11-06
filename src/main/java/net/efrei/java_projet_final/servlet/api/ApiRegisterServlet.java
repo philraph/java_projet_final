@@ -1,6 +1,7 @@
 package net.efrei.java_projet_final.servlet.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import jakarta.inject.Inject;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,13 +19,15 @@ public class ApiRegisterServlet extends HttpServlet {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    private final AuthentificationService _authService = new AuthentificationService();
+    @Inject
+    private AuthentificationService _authService;
 
-    private final UtilisateurService _userService = new UtilisateurService();
+    @Inject
+    private UtilisateurService _userService;
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
-        // Champs commun à tou t types d'utilisateur
+        // Champs commun à tout types d'utilisateur
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String accountType = req.getParameter("accountType");
@@ -39,12 +42,12 @@ public class ApiRegisterServlet extends HttpServlet {
         boolean isSuccess = false;
 
         // Create a new user
-        if(accountType == "ecole"){
+        if(accountType.equals("ecole")){
             String raisonSocial = req.getParameter("raison");
 
             isSuccess = _authService.registerEcole(username, password, raisonSocial);
         }
-        else if(accountType == "enseignant") {
+        else if(accountType.equals("enseignant")) {
             String name = req.getParameter("name");
             String prenom = req.getParameter("prenom");
             String email = req.getParameter("email");

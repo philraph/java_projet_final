@@ -2,57 +2,58 @@ package net.efrei.java_projet_final.services;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
 import net.efrei.java_projet_final.beans.EvalueBean;
-import net.efrei.java_projet_final.entities.CompetenceEntity;
-import net.efrei.java_projet_final.entities.EcoleEntity;
-import net.efrei.java_projet_final.entities.EnseignantEntity;
-import net.efrei.java_projet_final.entities.associations.EvalueEntity;
+import net.efrei.java_projet_final.entities.Competence;
+import net.efrei.java_projet_final.entities.Ecole;
+import net.efrei.java_projet_final.entities.Enseignant;
+import net.efrei.java_projet_final.entities.Evalue;
 
 import java.util.List;
 
-@Stateless
+@ApplicationScoped
 public class EvalueService {
 
     @EJB
     private EvalueBean evalueBean;
 
-    public void create(EvalueEntity evalue) {
+    public void create(Evalue evalue) {
         evalueBean.create(evalue);
     }
 
-    public void update(EvalueEntity evalue) {
+    public void update(Evalue evalue) {
         evalueBean.update(evalue);
     }
 
-    public void delete(EvalueEntity evalue) {
+    public void delete(Evalue evalue) {
         evalueBean.delete(evalue);
     }
 
-    public List<EvalueEntity> findAll() {
+    public List<Evalue> findAll() {
         return evalueBean.findAll();
     }
 
-    public List<EvalueEntity> findByEnseignant(EnseignantEntity enseignant) {
+    public List<Evalue> findByEnseignant(Enseignant enseignant) {
         return evalueBean.findByEnseignant(enseignant);
     }
 
-    public List<EvalueEntity> findByEcole(EcoleEntity ecole) {
+    public List<Evalue> findByEcole(Ecole ecole) {
         return evalueBean.findByEcole(ecole);
     }
 
-    public List<EvalueEntity> findByCompetence(CompetenceEntity competence) {
+    public List<Evalue> findByCompetence(Competence competence) {
         return evalueBean.findByCompetence(competence);
     }
 
-    public List<EvalueEntity> findByNote(Integer note) {
+    public List<Evalue> findByNote(Integer note) {
         return evalueBean.findByNote(note);
     }
 
-    public List<EvalueEntity> findByCommentaire(String commentaire) {
+    public List<Evalue> findByCommentaire(String commentaire) {
         return evalueBean.findByCommentaire(commentaire);
     }
 
-    public List<EvalueEntity> findByEnseignantAndEcole(EnseignantEntity enseignant, EcoleEntity ecole) {
+    public List<Evalue> findByEnseignantAndEcole(Enseignant enseignant, Ecole ecole) {
         return evalueBean.findByEnseignantAndEcole(enseignant, ecole);
     }
 }

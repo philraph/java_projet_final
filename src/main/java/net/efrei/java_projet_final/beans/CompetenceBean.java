@@ -1,44 +1,24 @@
 package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
-import net.efrei.java_projet_final.entities.CompetenceEntity;
+import net.efrei.java_projet_final.entities.Competence;
+import net.efrei.java_projet_final.utils.TransactionalOperation;
 
 import java.util.List;
 
 @Stateless
-public class CompetenceBean {
+public class CompetenceBean extends AbstractBean<Competence> {
 
-    @PersistenceContext()
-    private EntityManager em;
-
-    public void create(CompetenceEntity competence) {
-        em.persist(competence);
+    public Competence findById(Integer id) {
+        return em.find(Competence.class, id);
     }
 
-    public void update(CompetenceEntity competence) {
-        em.merge(competence);
+    public List<Competence> findAll() {
+        return em.createNamedQuery("Competence.findAll", Competence.class).getResultList();
     }
 
-    public void delete(CompetenceEntity competence) {
-        if (em.contains(competence)) {
-            em.remove(competence);
-        } else {
-            em.remove(em.merge(competence));
-        }
-    }
-
-    public CompetenceEntity findById(Integer id) {
-        return em.find(CompetenceEntity.class, id);
-    }
-
-    public List<CompetenceEntity> findAll() {
-        return em.createNamedQuery("CompetenceEntity.findAll", CompetenceEntity.class).getResultList();
-    }
-
-    public List<CompetenceEntity> findByCompetence(String competence) {
-        return em.createNamedQuery("CompetenceEntity.findByCompetence", CompetenceEntity.class).setParameter("competence", competence).getResultList();
+    public List<Competence> findByCompetence(String competence) {
+        return em.createNamedQuery("Competence.findByCompetence", Competence.class).setParameter("competence", competence).getResultList();
     }
 
 }

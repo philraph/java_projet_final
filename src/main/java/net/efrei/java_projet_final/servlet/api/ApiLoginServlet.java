@@ -1,5 +1,6 @@
 package net.efrei.java_projet_final.servlet.api;
 
+import jakarta.inject.Inject;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,9 +19,11 @@ public class ApiLoginServlet extends HttpServlet {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
-    private final AuthentificationService _authService = new AuthentificationService();
+    @Inject
+    private AuthentificationService _authService;
 
-    private final UtilisateurService _userService = new UtilisateurService();
+    @Inject
+    private UtilisateurService _userService;
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {

@@ -6,4 +6,5 @@ username = test &
 password = test &
 accountType = ecole &
 terms = true &
-notification = true
+notification = true &
+raison = EFREI

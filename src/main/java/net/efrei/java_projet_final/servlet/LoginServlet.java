@@ -1,10 +1,8 @@
 package net.efrei.java_projet_final.servlet;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
-import net.efrei.java_projet_final.services.UtilisateurService;
 
 import java.io.IOException;
 

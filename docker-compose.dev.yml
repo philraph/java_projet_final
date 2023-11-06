@@ -1,28 +1,47 @@
 version: '3.8'
 
 services:
-  db:
-    image: mariadb
+  mysql:
+    image: mysql:latest
     restart: always
     ports:
       - "3306:3306"
     environment:
-      MARIADB_ROOT_PASSWORD: maria
+      MYSQL_DATABASE: 'projet'
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
     volumes:
       - db:/var/lib/mysql
       - ./db-init.d:/docker-entrypoint-initdb.d
+    networks:
+      - mynetwork
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - "8081:80"
+    depends_on:
+      - mysql
+    environment:
+      - PMA_ARBITRARY=1
+    networks:
+      - mynetwork
 
   wildfly:
     image: quay.io/wildfly/wildfly:latest-jdk17
     ports:
       - "8080:8080"
+      - "9990:9990"
+    depends_on:
+      - mysql
     volumes:
       - ./build/exploded:/opt/jboss/wildfly/standalone/deployments:rw
-    environment:
-      - DB_ADDR=db
-      - DB_PORT=3306
-      - DB_USER=root
-      - DB_PASS=maria
+    networks:
+      - mynetwork
 
 volumes:
   db:
+
+networks:
+  mynetwork:
+    driver: bridge

@@ -1,70 +1,54 @@
 package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
-import net.efrei.java_projet_final.entities.CompetenceEntity;
-import net.efrei.java_projet_final.entities.EcoleEntity;
-import net.efrei.java_projet_final.entities.EnseignantEntity;
-import net.efrei.java_projet_final.entities.associations.EvalueEntity;
+import net.efrei.java_projet_final.entities.Competence;
+import net.efrei.java_projet_final.entities.Ecole;
+import net.efrei.java_projet_final.entities.Enseignant;
+import net.efrei.java_projet_final.entities.Evalue;
+import net.efrei.java_projet_final.utils.TransactionalOperation;
 
 import java.util.List;
 
 @Stateless
-public class EvalueBean {
+public class EvalueBean extends AbstractBean<Evalue> {
 
-    @PersistenceContext()
-    private EntityManager em;
-
-    public void create(EvalueEntity evalue) {
-        em.persist(evalue);
+    public List<Evalue> findAll() {
+        return em.createNamedQuery("Evalue.findAll", Evalue.class).getResultList();
     }
 
-    public void update(EvalueEntity evalue) {
-        em.merge(evalue);
-    }
-
-    public void delete(EvalueEntity evalue) {
-        em.remove(evalue);
-    }
-
-    public List<EvalueEntity> findAll() {
-        return em.createNamedQuery("EvalueEntity.findAll", EvalueEntity.class).getResultList();
-    }
-
-    public List<EvalueEntity> findByEnseignant(EnseignantEntity enseignant) {
-        TypedQuery<EvalueEntity> query = em.createNamedQuery("EvalueEntity.findByEnseignant", EvalueEntity.class);
+    public List<Evalue> findByEnseignant(Enseignant enseignant) {
+        TypedQuery<Evalue> query = em.createNamedQuery("Evalue.findByEnseignant", Evalue.class);
         query.setParameter("enseignant", enseignant);
         return query.getResultList();
     }
 
-    public List<EvalueEntity> findByEcole(EcoleEntity ecole) {
-        TypedQuery<EvalueEntity> query = em.createNamedQuery("EvalueEntity.findByEcole", EvalueEntity.class);
+    public List<Evalue> findByEcole(Ecole ecole) {
+        TypedQuery<Evalue> query = em.createNamedQuery("Evalue.findByEcole", Evalue.class);
         query.setParameter("ecole", ecole);
         return query.getResultList();
     }
 
-    public List<EvalueEntity> findByCompetence(CompetenceEntity competence) {
-        TypedQuery<EvalueEntity> query = em.createNamedQuery("EvalueEntity.findByCompetence", EvalueEntity.class);
+    public List<Evalue> findByCompetence(Competence competence) {
+        TypedQuery<Evalue> query = em.createNamedQuery("Evalue.findByCompetence", Evalue.class);
         query.setParameter("competence", competence);
         return query.getResultList();
     }
 
-    public List<EvalueEntity> findByNote(Integer note) {
-        TypedQuery<EvalueEntity> query = em.createNamedQuery("EvalueEntity.findByNote", EvalueEntity.class);
+    public List<Evalue> findByNote(Integer note) {
+        TypedQuery<Evalue> query = em.createNamedQuery("Evalue.findByNote", Evalue.class);
         query.setParameter("note", note);
         return query.getResultList();
     }
 
-    public List<EvalueEntity> findByCommentaire(String commentaire) {
-        TypedQuery<EvalueEntity> query = em.createNamedQuery("EvalueEntity.findByCommentaire", EvalueEntity.class);
+    public List<Evalue> findByCommentaire(String commentaire) {
+        TypedQuery<Evalue> query = em.createNamedQuery("Evalue.findByCommentaire", Evalue.class);
         query.setParameter("commentaire", commentaire);
         return query.getResultList();
     }
 
-    public List<EvalueEntity> findByEnseignantAndEcole(EnseignantEntity enseignant, EcoleEntity ecole) {
-        TypedQuery<EvalueEntity> query = em.createNamedQuery("EvalueEntity.findByEnseignantAndEcole", EvalueEntity.class);
+    public List<Evalue> findByEnseignantAndEcole(Enseignant enseignant, Ecole ecole) {
+        TypedQuery<Evalue> query = em.createNamedQuery("Evalue.findByEnseignantAndEcole", Evalue.class);
         query.setParameter("enseignant", enseignant);
         query.setParameter("ecole", ecole);
         return query.getResultList();

@@ -2,38 +2,39 @@ package net.efrei.java_projet_final.services;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
 import net.efrei.java_projet_final.beans.CompetenceBean;
-import net.efrei.java_projet_final.entities.CompetenceEntity;
+import net.efrei.java_projet_final.entities.Competence;
 
 import java.util.List;
 
-@Stateless
+@ApplicationScoped
 public class CompetenceService {
 
     @EJB
     private CompetenceBean competenceBean;
 
-    public void create(CompetenceEntity competence) {
+    public void create(Competence competence) {
         competenceBean.create(competence);
     }
 
-    public void update(CompetenceEntity competence) {
+    public void update(Competence competence) {
         competenceBean.update(competence);
     }
 
-    public void delete(CompetenceEntity competence) {
+    public void delete(Competence competence) {
         competenceBean.delete(competence);
     }
 
-    public CompetenceEntity findById(Integer id) {
+    public Competence findById(Integer id) {
         return competenceBean.findById(id);
     }
 
-    public List<CompetenceEntity> findAll() {
+    public List<Competence> findAll() {
         return competenceBean.findAll();
     }
 
-    public List<CompetenceEntity> findByCompetence(String competence) {
+    public List<Competence> findByCompetence(String competence) {
         return competenceBean.findByCompetence(competence);
     }
 }

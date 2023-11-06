@@ -31,7 +31,8 @@
         <div class="form-group">
             <label for="passwordConfirm">Confirmer le mot de passe</label>
             <input x-model="passwordConfirm" type="password" id="passwordConfirm" name="passwordConfirm" required>
-            <span x-show="password !== '' || passwordConfirm !== '' || !validatePasswords()" style="color: red; font-size: small">Les mots de passe ne correspondent pas.</span>
+            <span x-show="password !== '' || passwordConfirm !== '' || !validatePasswords()"
+                  style="color: red; font-size: small">Les mots de passe ne correspondent pas.</span>
         </div>
 
         <div class="form-group">
@@ -64,6 +65,67 @@
 
     </form>
 </div>
+
+<script>
+    function registerForm() {
+        return {
+            accountType: '',
+            acceptedTerms: false,
+            password: '',
+            passwordConfirm: '',
+            raison: '',
+            name: '',
+            prenom: '',
+            email: '',
+            telephone: '',
+            centreInteret: '',
+            site: '',
+            contrat: '',
+            extra: '',
+            validatePasswords() {
+                return this.password === this.passwordConfirm && this.password !== '' && this.passwordConfirm !== ''
+            },
+            submitForm() {
+                let formData = new FormData();
+                formData.append('username', this.password);
+                formData.append('password', this.password);
+                formData.append('terms', this.acceptedTerms);
+                formData.append('accountType', this.accountType);
+
+                switch (this.accountType) {
+                    case 'ecole' :
+                        formData.append('raison', this.raison);
+                        break;
+                    case 'enseignant' :
+                        formData.append('name', this.name);
+                        formData.append('prenom', this.prenom);
+                        formData.append('email', this.email);
+                        formData.append('telephone', this.telephone);
+                        formData.append('centreInteret', this.centreInteret);
+                        formData.append('site', this.site);
+                        formData.append('contrat', this.contrat);
+                        formData.append('extra', this.extra);
+                        break;
+                    default:
+                        break;
+                }
+
+                fetch('/api/register', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText);
+                        }
+                        return response.json();
+                    })
+                    .then(() => window.location.href = '/dashboard')
+                    .catch(error => console.error('Error:', error));
+            }
+        }
+    }
+</script>
 
 </body>
 </html>

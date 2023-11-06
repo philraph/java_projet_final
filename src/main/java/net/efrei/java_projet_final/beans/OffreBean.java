@@ -1,61 +1,41 @@
 package net.efrei.java_projet_final.beans;
 
 import jakarta.ejb.Stateless;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
-import net.efrei.java_projet_final.entities.EcoleEntity;
-import net.efrei.java_projet_final.entities.OffreEntity;
+import net.efrei.java_projet_final.entities.Ecole;
+import net.efrei.java_projet_final.entities.Offre;
+import net.efrei.java_projet_final.utils.TransactionalOperation;
 
 import java.util.List;
 
 @Stateless
-public class OffreBean {
+public class OffreBean extends AbstractBean<Offre> {
 
-    @PersistenceContext()
-    private EntityManager em;
-
-    public void create(OffreEntity offre) {
-        em.persist(offre);
-    }
-
-    public void update(OffreEntity offre) {
-        em.merge(offre);
-    }
-
-    public void delete(OffreEntity offre) {
-        if (em.contains(offre)) {
-            em.remove(offre);
-        } else {
-            em.remove(em.merge(offre));
-        }
-    }
-
-    public List<OffreEntity> findAll() {
-        TypedQuery<OffreEntity> query = em.createNamedQuery("OffreEntity.findAll", OffreEntity.class);
+    public List<Offre> findAll() {
+        TypedQuery<Offre> query = em.createNamedQuery("Offre.findAll", Offre.class);
         return query.getResultList();
     }
 
-    public List<OffreEntity> findByExigences(String exigences) {
-        TypedQuery<OffreEntity> query = em.createNamedQuery("OffreEntity.findByExigences", OffreEntity.class);
+    public List<Offre> findByExigences(String exigences) {
+        TypedQuery<Offre> query = em.createNamedQuery("Offre.findByExigences", Offre.class);
         query.setParameter("exigences", exigences);
         return query.getResultList();
     }
 
-    public List<OffreEntity> findByRemarques(String remarques) {
-        TypedQuery<OffreEntity> query = em.createNamedQuery("OffreEntity.findByRemarques", OffreEntity.class);
+    public List<Offre> findByRemarques(String remarques) {
+        TypedQuery<Offre> query = em.createNamedQuery("Offre.findByRemarques", Offre.class);
         query.setParameter("remarques", remarques);
         return query.getResultList();
     }
 
-    public List<OffreEntity> findByEcole(EcoleEntity ecole) {
-        TypedQuery<OffreEntity> query = em.createNamedQuery("OffreEntity.findByEcole", OffreEntity.class);
+    public List<Offre> findByEcole(Ecole ecole) {
+        TypedQuery<Offre> query = em.createNamedQuery("Offre.findByEcole", Offre.class);
         query.setParameter("raisonsociale", ecole.getRaisonSociale());
         return query.getResultList();
     }
 
-    public OffreEntity findById(Integer id) {
-        return em.find(OffreEntity.class, id);
+    public Offre findById(Integer id) {
+        return em.find(Offre.class, id);
     }
 
 }

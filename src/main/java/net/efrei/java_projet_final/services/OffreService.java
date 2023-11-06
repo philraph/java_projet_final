@@ -2,47 +2,48 @@ package net.efrei.java_projet_final.services;
 
 import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
 import net.efrei.java_projet_final.beans.OffreBean;
-import net.efrei.java_projet_final.entities.EcoleEntity;
-import net.efrei.java_projet_final.entities.OffreEntity;
+import net.efrei.java_projet_final.entities.Ecole;
+import net.efrei.java_projet_final.entities.Offre;
 
 import java.util.List;
 
-@Stateless
+@ApplicationScoped
 public class OffreService {
 
     @EJB
     private OffreBean offreBean;
 
-    public void create(OffreEntity offre) {
+    public void create(Offre offre) {
         offreBean.create(offre);
     }
 
-    public void update(OffreEntity offre) {
+    public void update(Offre offre) {
         offreBean.update(offre);
     }
 
-    public void delete(OffreEntity offre) {
+    public void delete(Offre offre) {
         offreBean.delete(offre);
     }
 
-    public OffreEntity findById(Integer id) {
+    public Offre findById(Integer id) {
         return offreBean.findById(id);
     }
 
-    public List<OffreEntity> findAll() {
+    public List<Offre> findAll() {
         return offreBean.findAll();
     }
 
-    public List<OffreEntity> findByExigences(String exigences) {
+    public List<Offre> findByExigences(String exigences) {
         return offreBean.findByExigences(exigences);
     }
 
-    public List<OffreEntity> findByRemarques(String remarques) {
+    public List<Offre> findByRemarques(String remarques) {
         return offreBean.findByRemarques(remarques);
     }
 
-    public List<OffreEntity> findByEcole(EcoleEntity ecole) {
+    public List<Offre> findByEcole(Ecole ecole) {
         return offreBean.findByEcole(ecole);
     }
 
