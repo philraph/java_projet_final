@@ -10,7 +10,7 @@ services:
       MYSQL_DATABASE: 'projet'
       MYSQL_ALLOW_EMPTY_PASSWORD: true
     volumes:
-      - db:/var/lib/mysql
+      - db_JL:/var/lib/mysql
       - ./db-init.d:/docker-entrypoint-initdb.d
     networks:
       - mynetwork
@@ -40,7 +40,7 @@ services:
       - mynetwork
 
 volumes:
-  db:
+  db_JL:
 
 networks:
   mynetwork:
