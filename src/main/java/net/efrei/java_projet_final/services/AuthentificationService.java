@@ -40,8 +40,7 @@ public class AuthentificationService {
     }
 
     public boolean loginEcole(String username,
-                              String mdp,
-                              String raisonSocial) {
+                              String mdp) {
 
         var shcool = _ecoleService.findByUsername(username);
 
@@ -101,8 +100,6 @@ public class AuthentificationService {
             _userService.register(user);
             _enseignantService.create(newEnseignant);
 
-            System.out.println(newEnseignant.toString());
-
             return false;
         }
     }
@@ -136,8 +133,6 @@ public class AuthentificationService {
             newEcole.setIdUtilisateur(user);
             newEcole.setRaisonSociale(raisonSocial);
             _ecoleService.create(newEcole);
-
-            System.out.println(newEcole.toString());
             return false;
         }
     }

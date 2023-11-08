@@ -34,7 +34,7 @@
 
         <div class="form-group">
             <label for="accountType">Type de compte</label>
-            <select x-model="accountType" required name="accountType" id="accountType">
+            <select x-model="accountType" required id="accountType">
                 <option selected disabled value="">
                     Sélectionner un type de compte
                 </option>
@@ -165,7 +165,10 @@
                         }
                         return response.json();
                     })
-                    .then(() => window.location.href = '/dashboard')
+                    .then((r) => {
+                        console.log(r);
+                        window.location.href = '/dashboard';
+                    })
                     .catch(error => this.errors.server = error.message);
             }
         }

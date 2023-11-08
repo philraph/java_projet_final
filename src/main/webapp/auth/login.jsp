@@ -62,7 +62,7 @@
                         }
                         return response.json();
                     })
-                    .then(() => window.location.href = '/dashboard')
+                    .then(() => window.location.href = '/dashboard.jsp')
                     .catch(error => this.error = error.message);
             }
         }

@@ -1,5 +1,6 @@
 package net.efrei.java_projet_final.servlet;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -41,10 +42,11 @@ public class TestPersistenceServlet extends HttpServlet {
 
         Utilisateur user = new Utilisateur();
         user.setUsername("test");
-        user.setPassword("test");
         user.setIsAdmin(false);
         user.setIsValid(true);
-
+        String mdp = "test";
+        String bcryptHashString = BCrypt.withDefaults().hashToString(12, mdp.toCharArray());
+        user.setPassword(bcryptHashString);
         utilisateurService.register(user);
 
         resp.getWriter().println("Persistence works!");
