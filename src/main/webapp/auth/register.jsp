@@ -11,28 +11,25 @@
 
 <div class="container">
     <h2>Inscription</h2>
-    <form action="/register" method="post" x-data="{
-    accountType: '',
-    acceptedTerms: false,
-    password: '',
-    passwordConfirm: '',
-    validatePasswords() { return this.password === this.passwordConfirm && this.password !== ''}
-}">
+    <form x-on:submit.prevent="submitForm" method="post" x-data="registerForm()">
+        <div x-show="errors.server" class="alert">
+            <span x-text="errors.server" class="error"></span>
+        </div>
         <div class="form-group">
             <label for="username">Nom d'utilisateur</label>
-            <input type="text" id="username" name="username" required>
+            <input type="text" id="username" x-model="username">
+            <span x-show="errors.username" style="color: red; font-size: small" x-text="errors.username"></span>
         </div>
 
         <div class="form-group">
             <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="password" required>
+            <input type="password" id="password" x-model="password">
         </div>
 
         <div class="form-group">
             <label for="passwordConfirm">Confirmer le mot de passe</label>
-            <input x-model="passwordConfirm" type="password" id="passwordConfirm" name="passwordConfirm" required>
-            <span x-show="password !== '' || passwordConfirm !== '' || !validatePasswords()"
-                  style="color: red; font-size: small">Les mots de passe ne correspondent pas.</span>
+            <input x-model="passwordConfirm" type="password" id="passwordConfirm" name="passwordConfirm">
+            <span x-show="errors.passwordConfirm" style="color: red; font-size: small" x-text="errors.passwordConfirm"></span>
         </div>
 
         <div class="form-group">
@@ -48,19 +45,21 @@
                     Je suis une école
                 </option>
             </select>
+            <span x-show="errors.accountType" style="color: red; font-size: small" x-text="errors.accountType"></span>
         </div>
 
         <jsp:include page="/WEB-INF/views/registerEcole.jsp"/>
         <jsp:include page="/WEB-INF/views/registerEnseignant.jsp"/>
 
-        <div class="form-group" x-show="accountType !== ''">
+        <div class="form-group">
             <fieldset>
                 <label for="terms">
-                    <input type="checkbox" id="terms" name="terms" x-model="acceptedTerms" required>
+                    <input type="checkbox" id="terms" x-model="acceptedTerms" required>
                     J'accepte les Conditions Generales d'Utilisation <span style="color: red">*</span>
                 </label>
+                <span x-show="errors.acceptedTerms" style="color: red; font-size: small" x-text="errors.acceptedTerms"></span>
             </fieldset>
-            <button type="submit" :disabled="!acceptedTerms || !validatePasswords()">S'inscrire</button>
+            <button type="submit">S'inscrire</button>
         </div>
 
     </form>
@@ -69,6 +68,7 @@
 <script>
     function registerForm() {
         return {
+            username: '',
             accountType: '',
             acceptedTerms: false,
             password: '',
@@ -82,10 +82,55 @@
             site: '',
             contrat: '',
             extra: '',
+            errors: {
+                username: '',
+                passwordConfirm: '',
+                raison: '',
+                name: '',
+                prenom: '',
+                email: '',
+                telephone: '',
+                centreInteret: '',
+                site: '',
+                contrat: '',
+                extra: '',
+                server: '',
+                acceptedTerms: ''
+            },
             validatePasswords() {
                 return this.password === this.passwordConfirm && this.password !== '' && this.passwordConfirm !== ''
             },
             submitForm() {
+
+                // Reset errors
+                Object.keys(this.errors).forEach(key => this.errors[key] = '');
+
+                if (!this.validatePasswords()) {
+                    this.errors.passwordConfirm = 'Les mots de passe ne correspondent pas.';
+                }
+
+                if (!this.acceptedTerms) {
+                    this.errors.acceptedTerms = 'Vous devez accepter les conditions générales d\'utilisation.';
+                }
+
+                const required = ['username', 'password', 'accountType'];
+
+                if (this.accountType === 'ecole') {
+                    required.push('raison');
+                } else if (this.accountType === 'enseignant') {
+                    required.push('name', 'prenom', 'email', 'telephone', 'centreInteret', 'site', 'contrat', 'extra');
+                }
+
+                required.forEach(field => {
+                    if (this[field] === '') {
+                        this.errors[field] = 'Ce champ est requis.';
+                    }
+                });
+
+                if (Object.values(this.errors).some(error => error !== '')) {
+                    return;
+                }
+
                 let formData = new FormData();
                 formData.append('username', this.password);
                 formData.append('password', this.password);
@@ -121,7 +166,7 @@
                         return response.json();
                     })
                     .then(() => window.location.href = '/dashboard')
-                    .catch(error => console.error('Error:', error));
+                    .catch(error => this.errors.server = error.message);
             }
         }
     }

@@ -5,6 +5,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
 import net.efrei.java_projet_final.entities.Ecole;
 import net.efrei.java_projet_final.entities.Enseignant;
+import net.efrei.java_projet_final.entities.Utilisateur;
 
 @ApplicationScoped
 public class AuthentificationService {
@@ -18,17 +19,21 @@ public class AuthentificationService {
     @Inject
     private EnseignantService _enseignantService;
 
-    public boolean loginUtilisateur(String username, String mdp){
+    public boolean loginUtilisateur(String username, String mdp) {
 
-        var user = _userService.findByUsername(username);
+        Utilisateur user;
+        try {
+            user = _userService.findByUsername(username);
+        } catch (Exception e) {
+            return false;
+        }
 
         // Si l'utilisateur existe
-        if ( user != null ) {
+        if (user != null) {
             BCrypt.Result result = BCrypt.verifyer().verify(mdp.toCharArray(), user.getPassword());
 
             return result.verified;
-        }
-        else {
+        } else {
             // L'utilisateur n'existe pas
             return false;
         }
@@ -36,17 +41,16 @@ public class AuthentificationService {
 
     public boolean loginEcole(String username,
                               String mdp,
-                              String raisonSocial){
+                              String raisonSocial) {
 
         var shcool = _ecoleService.findByUsername(username);
 
         // Si l'école existe
-        if ( shcool != null ) {
+        if (shcool != null) {
             BCrypt.Result result = BCrypt.verifyer().verify(mdp.toCharArray(), shcool.getIdUtilisateur().getPassword());
 
             return result.verified;
-        }
-        else {
+        } else {
             // L'utilisateur n'existe pas
             return false;
         }
@@ -61,15 +65,20 @@ public class AuthentificationService {
                                       String centreInteret,
                                       String site,
                                       String contrat,
-                                      String extra){
+                                      String extra) {
 
-        var user = _userService.findByUsername(username);
-
-        if(user != null){
-            // Le nom d'utilisateur existe déjà
+        Utilisateur user;
+        try {
+            user = _userService.findByUsername(username);
+        } catch (Exception e) {
             return false;
         }
-        else {
+
+        if (user != null) {
+            // Le nom d'utilisateur existe déjà
+            return false;
+        } else {
+            user = new Utilisateur();
             String bcryptHashString = BCrypt.withDefaults().hashToString(12, mdp.toCharArray());
 
             // Crée un nouveau utilisteur
@@ -98,15 +107,20 @@ public class AuthentificationService {
         }
     }
 
-    public boolean registerEcole(String username, String mdp, String raisonSocial){
+    public boolean registerEcole(String username, String mdp, String raisonSocial) {
 
-        var user = _userService.findByUsername(username);
-
-        if(user != null){
-            // Le nom d'utilisateur existe déjà
+        Utilisateur user;
+        try {
+            user = _userService.findByUsername(username);
+        } catch (Exception e) {
             return false;
         }
-        else {
+
+        if (user != null) {
+            // Le nom d'utilisateur existe déjà
+            return false;
+        } else {
+            user = new Utilisateur();
             String bcryptHashString = BCrypt.withDefaults().hashToString(12, mdp.toCharArray());
 
             // Crée un nouveau utilisteur
@@ -114,12 +128,13 @@ public class AuthentificationService {
             user.setUsername(username);
             user.setIsValid(false);
 
+
+            _userService.register(user);
+
             // Crée un nouvel enseignant
             Ecole newEcole = new Ecole();
             newEcole.setIdUtilisateur(user);
             newEcole.setRaisonSociale(raisonSocial);
-
-            _userService.register(user);
             _ecoleService.create(newEcole);
 
             System.out.println(newEcole.toString());

@@ -31,17 +31,11 @@ public class ApiRegisterServlet extends HttpServlet {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
         String accountType = req.getParameter("accountType");
-        String terms = req.getParameter("terms");
-        String notification = req.getParameter("notification");
-
-        System.out.println("terms : " + terms +"\n");
-        System.out.println("notification : " + notification +"\n");
 
         Map<String, String> responseMap = new HashMap<>();
 
         boolean isSuccess = false;
 
-        // Create a new user
         if(accountType.equals("ecole")){
             String raisonSocial = req.getParameter("raison");
 

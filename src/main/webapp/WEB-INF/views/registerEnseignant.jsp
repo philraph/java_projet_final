@@ -2,41 +2,47 @@
 <div x-show="accountType === 'enseignant'">
     <div class="form-group">
         <label for="name">Nom</label>
-        <input type="text" id="name" name="name" required>
+        <input type="text" id="name" x-model="name">
+        <span x-show="errors.acceptedTerms" style="color: red; font-size: small" x-text="errors.acceptedTerms"></span>
     </div>
 
     <div class="form-group">
         <label for="prenom">Prenom</label>
-        <input type="text" id="prenom" name="prenom" required>
+        <input type="text" id="prenom" x-model="prenom">
+        <span x-show="errors.acceptedTerms" style="color: red; font-size: small" x-text="errors.acceptedTerms"></span>
     </div>
 
     <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="Adresse Email" required>
+        <input type="email" id="email" x-model="email" placeholder="Adresse Email">
+        <span x-show="errors.acceptedTerms" style="color: red; font-size: small" x-text="errors.acceptedTerms"></span>
     </div>
 
     <div class="form-group">
         <label for="telephone">Telephone</label>
-        <input type="text" id="telephone" name="telephone" required>
+        <input type="text" id="telephone" x-model="telephone">
+        <span x-show="errors.acceptedTerms" style="color: red; font-size: small" x-text="errors.acceptedTerms"></span>
     </div>
 
     <div class="form-group">
         <label for="centreInteret">Centre d'Interet :</label><br>
-        <textarea id="centreInteret" name="centreInteret" rows="10" cols="50"></textarea><br>
+        <textarea id="centreInteret" x-model="centreInteret" rows="10" cols="50"></textarea><br>
     </div>
 
     <div class="form-group">
         <label for="site">Site(s) web</label>
-        <input type="text" id="site" name="site" required>
+        <input type="text" id="site" x-model="site">
+        <span x-show="errors.acceptedTerms" style="color: red; font-size: small" x-text="errors.acceptedTerms"></span>
     </div>
 
     <div class="form-group">
         <label for="contrat">Type de contrat</label>
-        <input type="text" id="contrat" name="contrat" required>
+        <input type="text" id="contrat" x-model="contrat">
+        <span x-show="errors.acceptedTerms" style="color: red; font-size: small" x-text="errors.acceptedTerms"></span>
     </div>
 
     <div class="form-group">
         <label for="extra">Information supplementaire :</label><br>
-        <textarea id="extra" name="extra" rows="10" cols="50"></textarea><br>
+        <textarea id="extra" x-model="extra" rows="10" cols="50"></textarea><br>
     </div>
 </div>

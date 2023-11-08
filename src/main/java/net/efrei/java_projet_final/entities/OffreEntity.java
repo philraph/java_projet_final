@@ -32,11 +32,11 @@ public class OffreEntity implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "idDispo", nullable = false)
-    private DisponibiliteEntity disponibilite;
+    private Disponibilite disponibilite;
 
     @ManyToOne
     @JoinColumn(name = "idEcole", nullable = false)
-    private EcoleEntity ecole;
+    private Ecole ecole;
 
     public Integer getId() {
         return id;
@@ -50,11 +50,11 @@ public class OffreEntity implements Serializable {
         return remarques;
     }
 
-    public DisponibiliteEntity getDisponibilite() {
+    public Disponibilite getDisponibilite() {
         return disponibilite;
     }
 
-    public EcoleEntity getEcole() {
+    public Ecole getEcole() {
         return ecole;
     }
 
@@ -66,11 +66,11 @@ public class OffreEntity implements Serializable {
         this.remarques = remarques;
     }
 
-    public void setDisponibilite(DisponibiliteEntity disponibilite) {
+    public void setDisponibilite(Disponibilite disponibilite) {
         this.disponibilite = disponibilite;
     }
 
-    public void setEcole(EcoleEntity ecole) {
+    public void setEcole(Ecole ecole) {
         this.ecole = ecole;
     }
 

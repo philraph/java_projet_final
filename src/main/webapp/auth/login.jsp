@@ -19,14 +19,17 @@
 <div class="container">
     <h2>Connexion</h2>
     <form x-on:submit.prevent="submitForm" x-data="loginForm()">
+        <div x-show="error" class="alert">
+            <span x-text="error" class="error"></span>
+        </div>
         <div class="form-group">
             <label for="username">Nom d'utilisateur</label>
-            <input type="text" id="username" name="username" x-model="username" required>
+            <input type="text" id="username"  x-model="username" required>
         </div>
 
         <div class="form-group">
             <label for="password">Mot de passe</label>
-            <input type="password" id="password" name="password" x-model="password" required>
+            <input type="password" id="password"  x-model="password" required>
         </div>
 
         <div class="form-group">
@@ -41,10 +44,9 @@
 <script>
     function loginForm() {
         return {
-            formData: {
-                username: '',
-                password: ''
-            },
+            username: '',
+            password: '',
+            error : '',
             submitForm() {
                 let formData = new FormData();
                 formData.append('username', this.username);
@@ -61,7 +63,7 @@
                         return response.json();
                     })
                     .then(() => window.location.href = '/dashboard')
-                    .catch(error => console.error('Error:', error));
+                    .catch(error => this.error = error.message);
             }
         }
     }
