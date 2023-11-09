@@ -25,6 +25,7 @@ public class ApiRegisterServlet extends HttpServlet {
     @Inject
     private UtilisateurService _userService;
 
+    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
 
         // Champs commun à tout types d'utilisateur
@@ -32,6 +33,9 @@ public class ApiRegisterServlet extends HttpServlet {
         String password = req.getParameter("password");
         String accountType = req.getParameter("accountType");
 
+        System.out.println("username: " + username);
+        System.out.println("password: " + password);
+        System.out.println("accountType: " + accountType);
         Map<String, String> responseMap = new HashMap<>();
 
         boolean isSuccess = false;

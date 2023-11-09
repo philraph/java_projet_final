@@ -155,7 +155,9 @@
                         break;
                 }
 
-                fetch('/api/register', {
+                const queryString = new URLSearchParams(formData).toString();
+
+                fetch('/api/register?' + queryString, {
                     method: 'POST',
                     body: formData
                 })
@@ -165,9 +167,12 @@
                         }
                         return response.json();
                     })
-                    .then((r) => {
-                        console.log(r);
-                        window.location.href = '/dashboard';
+                    .then((response) => {
+                        if(response.status === "error") {
+                            this.error.server = response.message;
+                        } else {
+                            window.location.href = "/dashboard.jsp";
+                        }
                     })
                     .catch(error => this.errors.server = error.message);
             }

@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpSession;
+import net.efrei.java_projet_final.entities.Utilisateur;
 import net.efrei.java_projet_final.services.AuthentificationService;
 import net.efrei.java_projet_final.services.UtilisateurService;
 
@@ -29,6 +30,9 @@ public class ApiLoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         String username = req.getParameter("username");
         String password = req.getParameter("password");
+
+        System.out.println("username: " + username);
+        System.out.println("password: " + password);
 
         Map<String, String> responseMap = new HashMap<>();
 

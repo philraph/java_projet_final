@@ -52,7 +52,9 @@
                 formData.append('username', this.username);
                 formData.append('password', this.password);
 
-                fetch('/api/login', {
+                const querystring = new URLSearchParams(formData).toString()
+
+                fetch('/api/login?' + querystring, {
                     method: 'POST',
                     body: formData
                 })
@@ -62,7 +64,13 @@
                         }
                         return response.json();
                     })
-                    .then(() => window.location.href = '/dashboard.jsp')
+                    .then((response) => {
+                        if(response.status === "error") {
+                            this.error = response.message;
+                        } else {
+                            window.location.href = "/dashboard.jsp";
+                        }
+                    })
                     .catch(error => this.error = error.message);
             }
         }
