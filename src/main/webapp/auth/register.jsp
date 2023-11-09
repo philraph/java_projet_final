@@ -132,7 +132,7 @@
                 }
 
                 let formData = new FormData();
-                formData.append('username', this.password);
+                formData.append('username', this.username);
                 formData.append('password', this.password);
                 formData.append('terms', this.acceptedTerms);
                 formData.append('accountType', this.accountType);

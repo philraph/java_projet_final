@@ -33,12 +33,9 @@ public class ApiRegisterServlet extends HttpServlet {
         String password = req.getParameter("password");
         String accountType = req.getParameter("accountType");
 
-        System.out.println("username: " + username);
-        System.out.println("password: " + password);
-        System.out.println("accountType: " + accountType);
         Map<String, String> responseMap = new HashMap<>();
 
-        boolean isSuccess = false;
+        var isSuccess = false;
 
         if(accountType.equals("ecole")){
             String raisonSocial = req.getParameter("raison");
@@ -66,6 +63,8 @@ public class ApiRegisterServlet extends HttpServlet {
                                                         contrat,
                                                         extra);
         }
+
+        System.out.println("isSuccess: " + isSuccess);
 
         if (isSuccess) {
             responseMap.put("status", "success");

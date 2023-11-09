@@ -123,6 +123,7 @@ public class AuthentificationService {
             // Crée un nouveau utilisteur
             user.setPassword(bcryptHashString);
             user.setUsername(username);
+            user.setIsAdmin(false);
             user.setIsValid(false);
 
 
