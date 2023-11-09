@@ -38,7 +38,6 @@
             <property name="eclipselink.jdbc.url" value="jdbc:mysql://mysql:3306/projet"/>
             <property name="eclipselink.jdbc.user" value="root"/>
             <property name="eclipselink.jdbc.password" value=""/>
-            <property name="jakarta.persistence.schema-generation.database.action" value="drop-and-create"/>
             <property name="eclipselink.logging.level.sql" value="FINE"/>
             <property name="eclipselink.logging.parameters" value="true"/>
             <property name="eclipselink.logging.exceptions" value="true"/>
