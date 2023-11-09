@@ -34,13 +34,13 @@ public class EnseignantBean extends AbstractBean<Enseignant> {
     public Enseignant findByMail(String mail) {
         TypedQuery<Enseignant> query = em.createNamedQuery("Enseignant.findByMail", Enseignant.class);
         query.setParameter("mail", mail);
-        return query.getSingleResult();
+        return query.getResultStream().findFirst().orElse(null);
     }
 
     public Enseignant findByTelephone(String telephone) {
         TypedQuery<Enseignant> query = em.createNamedQuery("Enseignant.findByTelephone", Enseignant.class);
         query.setParameter("telephone", telephone);
-        return query.getSingleResult();
+        return query.getResultStream().findFirst().orElse(null);
     }
 
     public List<Enseignant> findByCentreInterets(String centreInterets) {
@@ -70,7 +70,7 @@ public class EnseignantBean extends AbstractBean<Enseignant> {
     public Enseignant findByUsername(String username) {
         TypedQuery<Enseignant> query = em.createNamedQuery("Enseignant.findByUsername", Enseignant.class);
         query.setParameter("username", username);
-        return query.getSingleResult();
+        return query.getResultStream().findFirst().orElse(null);
     }
 
     public Enseignant findByUsernameAndStatus(String username, Boolean isAdmin, Boolean isValid) {
@@ -78,7 +78,7 @@ public class EnseignantBean extends AbstractBean<Enseignant> {
         query.setParameter("username", username);
         query.setParameter("isAdmin", isAdmin);
         query.setParameter("isValid", isValid);
-        return query.getSingleResult();
+        return query.getResultStream().findFirst().orElse(null);
     }
 
 }

@@ -11,10 +11,7 @@ public class NiveauBean extends AbstractBean<Niveau> {
 
     public Niveau findByNiveau(String niveau) {
         List<Niveau> result = em.createNamedQuery("Niveau.findByNiveau", Niveau.class).setParameter("niveau", niveau).getResultList();
-        if (result.isEmpty()) {
-            return null;
-        }
-        return result.get(0);
+        return result.isEmpty() ? null : result.get(0);
     }
 
     public List<Niveau> findAll() {

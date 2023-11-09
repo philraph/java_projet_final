@@ -22,12 +22,12 @@ public class EcoleBean extends AbstractBean<Ecole> {
     public Ecole findByRaisonSociale(String raisonSociale) {
         TypedQuery<Ecole> query = em.createNamedQuery("Ecole.findByRaisonSociale", Ecole.class);
         query.setParameter("raisonSociale", raisonSociale);
-        return query.getSingleResult();
+        return query.getResultStream().findFirst().orElse(null);
     }
 
     public Ecole findByUsername(String username) {
         TypedQuery<Ecole> query = em.createNamedQuery("Ecole.findByUsername", Ecole.class);
         query.setParameter("username", username);
-        return query.getSingleResult();
+        return query.getResultStream().findFirst().orElse(null);
     }
 }

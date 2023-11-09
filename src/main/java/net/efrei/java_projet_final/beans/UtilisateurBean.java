@@ -19,7 +19,7 @@ public class UtilisateurBean extends AbstractBean<Utilisateur> {
     public Utilisateur findByUsername(String username) {
         return em.createNamedQuery("Utilisateur.findByUsername", Utilisateur.class)
                 .setParameter("username", username)
-                .getSingleResult();
+                .getResultStream().findFirst().orElse(null);
     }
 
     public List<Utilisateur> findByIsAdmin(Boolean isAdmin) {
