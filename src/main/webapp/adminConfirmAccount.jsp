@@ -21,6 +21,7 @@
 <%
   List<Utilisateur> users = (List<Utilisateur>) request.getAttribute("users");
 %>
+
 <div class="container">
   <h2>Liste des utilisateurs non-valide</h2>
   <table role="grid">
@@ -34,8 +35,9 @@
     </thead>
     <tbody>
     <% for (Utilisateur user : users) {%>
+
     <tr>
-      <form action="adminConfirmAccount" method="post">
+
         <th scope="row"><%= user.getId() %></th>
         <td><%= user.getUsername() %></td>
         <%
@@ -44,10 +46,14 @@
         else {%>
         <td>Enseignant</td>
         <% }%>
+        <td>
+          <form action="adminConfirmAccount" method="post">
         <input type="hidden" name="userId" value="<%= user.getId() %>">
-        <td><button type="submit" name="action" value="validate">Valider</button></td>
-      </form>
+        <button type="submit" name="action" value="validate">Valider</button>
+        </form>
+        </td>
     </tr>
+
     <% } %>
     </tbody>
   </table>

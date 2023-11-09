@@ -35,4 +35,5 @@ public class adminConfirmAccount extends HttpServlet {
         req.getRequestDispatcher("adminConfirmAccount.jsp").forward(req, resp);
     }
 
+
 }
