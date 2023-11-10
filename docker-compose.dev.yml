@@ -11,7 +11,7 @@ services:
       MYSQL_ALLOW_EMPTY_PASSWORD: true
     volumes:
       - db_raph:/var/lib/mysql
-      - ./db-init.d:/docker-entrypoint-initdb.d
+#      - ./db-init.d:/docker-entrypoint-initdb.d
     networks:
       - mynetwork
 

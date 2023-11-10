@@ -1,16 +1,19 @@
 version: '3.8'
 
 services:
-  db:
-    image: mariadb
+  mysql:
+    image: mysql:latest
     restart: always
     ports:
       - "3306:3306"
     environment:
-      MARIADB_ROOT_PASSWORD: maria
+      MYSQL_DATABASE: 'projet'
+      MYSQL_ALLOW_EMPTY_PASSWORD: true
     volumes:
-      - db:/var/lib/mysql
-      - ./db-init.d:/docker-entrypoint-initdb.d
+      - db_prod:/var/lib/mysql
+    # - ./db-init.d:/docker-entrypoint-initdb.d
+    networks:
+      - mynetwork
 
   wildfly:
     build:
@@ -18,11 +21,14 @@ services:
       dockerfile: Dockerfile
     ports:
       - "8080:8080"
-    environment:
-      - DB_ADDR=db
-      - DB_PORT=3306
-      - DB_USER=root
-      - DB_PASS=maria
+    depends_on:
+      - mysql
+    networks:
+      - mynetwork
 
 volumes:
-  db:
+  db_prod:
+
+networks:
+  mynetwork:
+    driver: bridge
