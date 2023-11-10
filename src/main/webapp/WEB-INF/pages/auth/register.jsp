@@ -182,7 +182,7 @@
                         if (response.status === "error") {
                             this.error.server = response.message;
                         } else {
-                            window.location.href = "/dashboard";
+                            window.location.href = "/auth/login";
                         }
                     })
                     .catch(error => this.errors.server = error.message);
