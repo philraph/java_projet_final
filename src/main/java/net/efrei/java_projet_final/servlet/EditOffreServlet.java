@@ -28,7 +28,7 @@ public class EditOffreServlet extends HttpServlet {
 
         String[] splits = pathInfo.split("/");
         if (splits.length != 2) {
-            resp.sendRedirect("dashboard");
+            resp.sendRedirect("/dashboard");
             return;
         }
 
@@ -36,13 +36,13 @@ public class EditOffreServlet extends HttpServlet {
         try {
             offerId = Integer.parseInt(splits[1]);
         } catch (NumberFormatException e) {
-            resp.sendRedirect("dashboard");
+            resp.sendRedirect("/dashboard");
             return;
         }
 
         Offre offre = offreService.findById(offerId);
         if (offre == null) {
-            resp.sendRedirect("schools");
+            resp.sendRedirect("/dashboard");
             return;
         }
 

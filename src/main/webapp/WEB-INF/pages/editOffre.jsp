@@ -1,3 +1,13 @@
+<%@ page import="net.efrei.java_projet_final.entities.Offre" %><%--
+  Created by IntelliJ IDEA.
+  User: jl142
+  Date: 20/10/2023
+  Time: 14:36
+  To change this template use File | Settings | File Templates.
+--%>
+<%
+    Offre offre = (Offre) request.getAttribute("offre");
+%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="fr">
@@ -10,10 +20,10 @@
 <body>
 
 <div class="container">
-    <h2>Creation d'une offre</h2>
-    <form action="/edit/offres" method="post">
+    <h2>Étider une offre</h2>
+    <form action="/edit/offres/"<%= offre.getId() %>"" method="post">
 
-        <jsp:include page="/WEB-INF/components/createOffre.jsp"/>
+        <jsp:include page="/WEB-INF/components/editOffre.jsp"/>
 
         <button type="submit">Éditer l'offre</button>
 
