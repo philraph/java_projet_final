@@ -28,6 +28,7 @@ tasks.register('explodedWar', Copy) {
 }
 
 tasks.register('deployToWildflyContainer') {
+    dependsOn clean
     dependsOn explodedWar
     doLast {
         new File("${buildDir}/exploded/ROOT.war.dodeploy").createNewFile()

@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import net.efrei.java_projet_final.services.AuthentificationService;
+import net.efrei.java_projet_final.services.AuthenticationService;
 import net.efrei.java_projet_final.services.UtilisateurService;
 
 import java.io.IOException;
@@ -20,7 +20,7 @@ public class ApiRegisterServlet extends HttpServlet {
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Inject
-    private AuthentificationService _authService;
+    private AuthenticationService _authService;
 
     @Inject
     private UtilisateurService _userService;

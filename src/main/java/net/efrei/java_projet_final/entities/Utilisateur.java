@@ -29,11 +29,11 @@ public class Utilisateur {
     @Column(name = "isValid")
     private Boolean isValid;
 
-//    @OneToOne(mappedBy = "idUtilisateur")
-//    private Ecole ecole;
+    @OneToOne(mappedBy = "idUtilisateur")
+    private Ecole ecole;
 
-//    @OneToOne(mappedBy = "idUtilisateur")
-//    private Enseignant enseignant;
+    @OneToOne(mappedBy = "idUtilisateur")
+    private Enseignant enseignant;
 
     public Integer getId() {
         return id;
@@ -75,20 +75,20 @@ public class Utilisateur {
         this.isValid = isValid;
     }
 
-//    public Ecole getEcole() {
-//        return ecole;
-//    }
-//
-//    public void setEcole(Ecole ecole) {
-//        this.ecole = ecole;
-//    }
-//
-//    public Enseignant getEnseignant() {
-//        return enseignant;
-//    }
-//
-//    public void setEnseignant(Enseignant enseignant) {
-//        this.enseignant = enseignant;
-//    }
+    public Ecole getEcole() {
+        return ecole;
+    }
+
+    public void setEcole(Ecole ecole) {
+        this.ecole = ecole;
+    }
+
+    public Enseignant getEnseignant() {
+        return enseignant;
+    }
+
+    public void setEnseignant(Enseignant enseignant) {
+        this.enseignant = enseignant;
+    }
 
 }
