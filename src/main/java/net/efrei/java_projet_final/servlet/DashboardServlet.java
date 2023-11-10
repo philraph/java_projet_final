@@ -10,11 +10,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import net.efrei.java_projet_final.entities.Utilisateur;
+import net.efrei.java_projet_final.security.Group;
+import net.efrei.java_projet_final.security.Protected;
 import net.efrei.java_projet_final.services.UtilisateurService;
 
 import java.io.IOException;
 
 @WebServlet("/dashboard")
+@Protected(Group.VALID_USER)
 public class DashboardServlet extends HttpServlet {
 
     @Inject

@@ -8,7 +8,7 @@ import net.efrei.java_projet_final.entities.Enseignant;
 import net.efrei.java_projet_final.entities.Utilisateur;
 
 @ApplicationScoped
-public class AuthentificationService {
+public class AuthenticationService {
 
     @Inject
     private UtilisateurService _userService;
@@ -20,7 +20,6 @@ public class AuthentificationService {
     private EnseignantService _enseignantService;
 
     public boolean loginUtilisateur(String username, String mdp) {
-
         Utilisateur user;
         try {
             user = _userService.findByUsername(username);

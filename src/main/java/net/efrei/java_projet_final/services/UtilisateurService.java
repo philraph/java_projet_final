@@ -9,8 +9,11 @@ import jakarta.enterprise.inject.Typed;
 import jakarta.inject.Singleton;
 import net.efrei.java_projet_final.beans.UtilisateurBean;
 import net.efrei.java_projet_final.entities.Utilisateur;
+import net.efrei.java_projet_final.security.Group;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
 
 @ApplicationScoped
 public class UtilisateurService {
@@ -52,5 +55,13 @@ public class UtilisateurService {
 
     public List<Utilisateur> findByUsernameAndStatus(String username, Boolean isAdmin, Boolean isValid) {
         return utilisateurBean.findByUsernameAndStatus(username, isAdmin, isValid);
+    }
+
+    public boolean hasGroup(Utilisateur utilisateur, Group group) {
+        return utilisateurBean.computeGroups(utilisateur).contains(group);
+    }
+
+    public boolean hasGroups(Utilisateur utilisateur, Group[] groups) {
+        return Arrays.stream(groups).allMatch(utilisateurBean.computeGroups(utilisateur)::contains);
     }
 }
