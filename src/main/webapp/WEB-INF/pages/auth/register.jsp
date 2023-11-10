@@ -16,25 +16,25 @@
             <span x-text="errors.server" class="error"></span>
         </div>
         <div class="form-group">
-            <label for="username">Nom d'utilisateur</label>
+            <label for="username">Nom d'utilisateur <span style="color: red">*</span></label>
             <input type="text" id="username" x-model="username">
             <span x-show="errors.username" style="color: red; font-size: small" x-text="errors.username"></span>
         </div>
 
         <div class="form-group">
-            <label for="password">Mot de passe</label>
+            <label for="password">Mot de passe <span style="color: red">*</span></label>
             <input type="password" id="password" x-model="password">
         </div>
 
         <div class="form-group">
-            <label for="passwordConfirm">Confirmer le mot de passe</label>
+            <label for="passwordConfirm">Confirmer le mot de passe <span style="color: red">*</span></label>
             <input x-model="passwordConfirm" type="password" id="passwordConfirm" name="passwordConfirm">
             <span x-show="errors.passwordConfirm" style="color: red; font-size: small"
                   x-text="errors.passwordConfirm"></span>
         </div>
 
         <div class="form-group">
-            <label for="accountType">Type de compte</label>
+            <label for="accountType">Type de compte <span style="color: red">*</span></label>
             <select x-model="accountType" required id="accountType">
                 <option selected disabled value="">
                     Sélectionner un type de compte
@@ -124,7 +124,7 @@
                 if (this.accountType === 'ecole') {
                     required.push('raison');
                 } else if (this.accountType === 'enseignant') {
-                    required.push('name', 'prenom', 'email', 'telephone', 'centreInteret', 'site', 'contrat', 'extra');
+                    required.push('name', 'prenom', 'email', 'telephone', 'contrat');
                 }
 
                 required.forEach(field => {
@@ -152,10 +152,15 @@
                         formData.append('prenom', this.prenom);
                         formData.append('email', this.email);
                         formData.append('telephone', this.telephone);
-                        formData.append('centreInteret', this.centreInteret);
-                        formData.append('site', this.site);
                         formData.append('contrat', this.contrat);
-                        formData.append('extra', this.extra);
+
+                        const optional = ['centreInteret', 'site', 'extra'];
+                        Object.keys(this.$data).forEach(key => {
+                            if (optional.includes(key)) {
+                                formData.append(key, this[key]);
+                            }
+                        });
+
                         break;
                     default:
                         break;
