@@ -29,6 +29,11 @@ public class FilterMiddleware implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
+        if(httpRequest.getRequestURI().startsWith(httpRequest.getContextPath() + "/resources")) {
+            chain.doFilter(request, response);
+            return;
+        }
+
         HttpSession session = httpRequest.getSession();
 
         String servletName = ((HttpServletRequest) request).getHttpServletMapping().getServletName();
