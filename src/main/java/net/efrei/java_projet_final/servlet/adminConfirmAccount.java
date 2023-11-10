@@ -7,6 +7,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import net.efrei.java_projet_final.entities.Utilisateur;
+import net.efrei.java_projet_final.security.Group;
+import net.efrei.java_projet_final.security.Protected;
 import net.efrei.java_projet_final.services.UtilisateurService;
 
 import java.io.IOException;
@@ -14,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @WebServlet("/adminConfirmAccount")
+//@Protected(Group.ADMIN)
 public class adminConfirmAccount extends HttpServlet {
 
     @Inject
@@ -22,9 +25,7 @@ public class adminConfirmAccount extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        List<Utilisateur> users = utilisateurService.findAll().stream()
-                .filter(user -> !user.getIsValid())
-                .collect(Collectors.toList());
+        List<Utilisateur> users = utilisateurService.findByIsValid(false);
         req.setAttribute("users", users);
         req.getRequestDispatcher("/WEB-INF/pages/adminConfirmAccount.jsp").forward(req, resp);
     }
@@ -35,7 +36,8 @@ public class adminConfirmAccount extends HttpServlet {
         Utilisateur user = utilisateurService.findById(userId);
         user.setIsValid(true);
         utilisateurService.update(user);
-        req.getRequestDispatcher("/WEB-INF/pages/adminConfirmAccount.jsp").forward(req, resp);
+        resp.sendRedirect("adminConfirmAccount");
+//        req.getRequestDispatcher("/WEB-INF/pages/adminConfirmAccount.jsp").forward(req, resp);
     }
 
 
