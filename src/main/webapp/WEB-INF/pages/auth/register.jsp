@@ -153,13 +153,9 @@
                         formData.append('email', this.email);
                         formData.append('telephone', this.telephone);
                         formData.append('contrat', this.contrat);
-
-                        const optional = ['centreInteret', 'site', 'extra'];
-                        Object.keys(this.$data).forEach(key => {
-                            if (optional.includes(key)) {
-                                formData.append(key, this[key]);
-                            }
-                        });
+                        formData.append('centreInteret', this.centreInteret);
+                        formData.append('site', this.site);
+                        formData.append('extra', this.extra);
 
                         break;
                     default:
