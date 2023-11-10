@@ -107,11 +107,7 @@ public class AuthentificationService {
     public boolean registerEcole(String username, String mdp, String raisonSocial) {
 
         Utilisateur user;
-        try {
-            user = _userService.findByUsername(username);
-        } catch (Exception e) {
-            return false;
-        }
+        user = _userService.findByUsername(username);
 
         if (user != null) {
             // Le nom d'utilisateur existe déjà
@@ -134,7 +130,7 @@ public class AuthentificationService {
             newEcole.setIdUtilisateur(user);
             newEcole.setRaisonSociale(raisonSocial);
             _ecoleService.create(newEcole);
-            return false;
+            return true;
         }
     }
 }
