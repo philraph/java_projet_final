@@ -22,15 +22,13 @@ public class SchoolDetailsServlet extends HttpServlet {
         String pathInfo = req.getPathInfo();
 
         if (pathInfo == null || pathInfo.equals("/")) {
-            // Gérer le cas où aucun ID d'école n'est fourni, rediriger vers la liste des écoles par exemple
             resp.sendRedirect("schools");
             return;
         }
 
         String[] splits = pathInfo.split("/");
         if (splits.length != 2) {
-            // Gérer l'erreur si le chemin est incorrect
-            resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+            resp.sendRedirect("schools");
             return;
         }
 
@@ -38,15 +36,13 @@ public class SchoolDetailsServlet extends HttpServlet {
         try {
             ecoleId = Integer.parseInt(splits[1]);
         } catch (NumberFormatException e) {
-            // Gérer l'erreur si l'ID n'est pas un nombre
-            resp.sendError(HttpServletResponse.SC_BAD_REQUEST);
+            resp.sendRedirect("schools");
             return;
         }
 
         Ecole ecole = ecoleService.findById(ecoleId);
         if (ecole == null) {
-            // Gérer l'erreur si l'école n'est pas trouvée
-            resp.sendError(HttpServletResponse.SC_NOT_FOUND);
+            resp.sendRedirect("schools");
             return;
         }
 
