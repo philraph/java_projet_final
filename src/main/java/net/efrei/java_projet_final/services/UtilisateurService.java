@@ -1,12 +1,7 @@
 package net.efrei.java_projet_final.services;
 
-import at.favre.lib.crypto.bcrypt.BCrypt;
 import jakarta.ejb.EJB;
-import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
-import jakarta.enterprise.inject.Default;
-import jakarta.enterprise.inject.Typed;
-import jakarta.inject.Singleton;
 import net.efrei.java_projet_final.beans.UtilisateurBean;
 import net.efrei.java_projet_final.entities.Utilisateur;
 import net.efrei.java_projet_final.security.Group;
@@ -63,5 +58,9 @@ public class UtilisateurService {
 
     public boolean hasGroups(Utilisateur utilisateur, Group[] groups) {
         return Arrays.stream(groups).allMatch(utilisateurBean.computeGroups(utilisateur)::contains);
+    }
+
+    public Set<Group> getUserGroups(Utilisateur utilisateur) {
+        return utilisateurBean.computeGroups(utilisateur);
     }
 }

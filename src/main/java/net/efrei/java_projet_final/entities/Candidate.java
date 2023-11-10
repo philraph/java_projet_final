@@ -11,7 +11,8 @@ import jakarta.persistence.*;
                 @NamedQuery(name = "Candidate.findByOffre", query = "SELECT c FROM Candidate c WHERE c.idOffre = :offre"),
                 @NamedQuery(name = "Candidate.findByContactPar", query = "SELECT c FROM Candidate c WHERE c.contactPar = :contactPar"),
                 @NamedQuery(name = "Candidate.findByContactLe", query = "SELECT c FROM Candidate c WHERE c.contactLe = :contactLe"),
-                @NamedQuery(name = "Candidate.findByDecision", query = "SELECT c FROM Candidate c WHERE c.decision = :decision")
+                @NamedQuery(name = "Candidate.findByDecision", query = "SELECT c FROM Candidate c WHERE c.decision = :decision"),
+                @NamedQuery(name = "Candidate.findByEcole", query = "SELECT c FROM Candidate c WHERE c.idOffre.idEcole = :ecole")
         }
 )
 public class Candidate {

@@ -5,6 +5,7 @@ import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.enterprise.inject.Typed;
 import net.efrei.java_projet_final.beans.CandidateBean;
+import net.efrei.java_projet_final.entities.Ecole;
 import net.efrei.java_projet_final.entities.Enseignant;
 import net.efrei.java_projet_final.entities.Offre;
 import net.efrei.java_projet_final.entities.Candidate;
@@ -55,6 +56,10 @@ public class CandidateService {
 
     public List<Candidate> findByDecision(String decision) {
         return candidateBean.findByDecision(decision);
+    }
+
+    public List<Candidate> findByEcole(Ecole ecole) {
+        return candidateBean.findByEcole(ecole);
     }
 
 }

@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import net.efrei.java_projet_final.entities.Ecole;
 import net.efrei.java_projet_final.entities.Enseignant;
 import net.efrei.java_projet_final.entities.Utilisateur;
 import net.efrei.java_projet_final.security.Group;
@@ -43,6 +44,20 @@ public class DashboardServlet extends HttpServlet {
             req.setAttribute("users", _userService.findAll());
             req.setAttribute("ecoles", _ecoleService.findAll());
             req.setAttribute("enseignants", _enseignantService.findAll());
+            req.setAttribute("candidates", _candidateService.findAll());
+        }
+
+        if(_userService.hasGroup(user, Group.ECOLE)) {
+            Ecole ecole = _ecoleService.findByUsername(user.getUsername());
+            req.setAttribute("ecole", ecole);
+            req.setAttribute("candidatures", _candidateService.findByEcole(ecole));
+        }
+
+        if(_userService.hasGroup(user, Group.ENSEIGNANT)) {
+            Enseignant enseignant = _enseignantService.findByUsername(user.getUsername());
+            req.setAttribute("enseignant", enseignant);
+            req.setAttribute("candidatures", _candidateService.findByEnseignant(enseignant));
+            req.setAttribute("offres", _offreService.findAll());
         }
 
         req.getRequestDispatcher("/WEB-INF/pages/dashboard.jsp").forward(req, resp);
