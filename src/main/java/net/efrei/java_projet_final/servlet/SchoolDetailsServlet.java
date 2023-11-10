@@ -23,7 +23,7 @@ public class SchoolDetailsServlet extends HttpServlet {
 
         if (pathInfo == null || pathInfo.equals("/")) {
             // Gérer le cas où aucun ID d'école n'est fourni, rediriger vers la liste des écoles par exemple
-            resp.sendRedirect("schools.jsp");
+            resp.sendRedirect("schools");
             return;
         }
 
@@ -51,6 +51,6 @@ public class SchoolDetailsServlet extends HttpServlet {
         }
 
         req.setAttribute("school", ecole);
-        req.getRequestDispatcher("/WEB-INF/views/schoolDetails.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/pages/schoolDetails.jsp").forward(req, resp);
     }
 }

@@ -12,7 +12,7 @@
     <p class="text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae
         vestibulum. Donec in efficitur leo. Morbi efficitur, odio vitae dictum placerat, sem libero volutpat orci, ac
         vehicula justo leo a est. Vivamus suscipit tortor eget felis porttitor volutpat.</p>
-    <a href="/auth/login.jsp" class="btn btn-primary">Se connecter</a>
+    <a href="${pageContext.request.contextPath}/auth/login" class="btn btn-primary">Se connecter</a>
 </div>
 </body>
 </html>

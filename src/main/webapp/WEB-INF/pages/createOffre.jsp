@@ -13,9 +13,9 @@
     <h2>Creation d'une offre</h2>
     <form action="/createOffre" method="post">
 
-        <jsp:include page="/WEB-INF/views/createOffre.jsp"/>
+        <jsp:include page="/WEB-INF/components/createOffre.jsp"/>
 
-        <button type="submit">Creer l'offre</button>
+        <button type="submit">Créer l'offre</button>
 
     </form>
 </div>

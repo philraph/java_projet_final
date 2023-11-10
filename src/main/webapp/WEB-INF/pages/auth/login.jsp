@@ -36,7 +36,7 @@
             <button type="submit">Se connecter</button>
         </div>
 
-        <p>Pas encore de compte ? <a href="/auth/register.jsp">S'inscrire</a></p>
+        <p>Pas encore de compte ? <a href="/WEB-INF/pages/auth/register.jsp">S'inscrire</a></p>
     </form>
 </div>
 
@@ -68,7 +68,7 @@
                         if(response.status === "error") {
                             this.error = response.message;
                         } else {
-                            window.location.href = "/dashboard.jsp";
+                            window.location.href = "/dashboard";
                         }
                     })
                     .catch(error => this.error = error.message);

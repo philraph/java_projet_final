@@ -28,7 +28,7 @@ public class DashboardServlet extends HttpServlet {
             return;
         }
 
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/dashboard.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/dashboard.jsp");
 
         Utilisateur user = (Utilisateur) session.getAttribute("user");
         req.setAttribute("username", user.getUsername());

@@ -48,8 +48,8 @@
             <span x-show="errors.accountType" style="color: red; font-size: small" x-text="errors.accountType"></span>
         </div>
 
-        <jsp:include page="/WEB-INF/views/registerEcole.jsp"/>
-        <jsp:include page="/WEB-INF/views/registerEnseignant.jsp"/>
+        <jsp:include page="/WEB-INF/components/registerEcole.jsp"/>
+        <jsp:include page="/WEB-INF/components/registerEnseignant.jsp"/>
 
         <div class="form-group">
             <fieldset>
@@ -171,7 +171,7 @@
                         if(response.status === "error") {
                             this.error.server = response.message;
                         } else {
-                            window.location.href = "/dashboard.jsp";
+                            window.location.href = "/dashboard";
                         }
                     })
                     .catch(error => this.errors.server = error.message);
