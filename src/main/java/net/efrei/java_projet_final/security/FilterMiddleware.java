@@ -45,7 +45,7 @@ public class FilterMiddleware implements Filter {
 
         Protected protectedAnnotation = null;
         try {
-            protectedAnnotation = (Protected) Class.forName(servletName).getAnnotation(Protected.class);
+            protectedAnnotation = Class.forName(servletName).getAnnotation(Protected.class);
         } catch (ClassNotFoundException e) {
             System.out.println("Class not found: " + servletName);
         }
@@ -59,15 +59,12 @@ public class FilterMiddleware implements Filter {
 
         Utilisateur user = (Utilisateur) session.getAttribute("user");
 
-        if(!_userService.hasGroups(user, necessaryGroups)) {
-            if(Arrays.asList(necessaryGroups).contains(Group.GUEST)) {
-                httpResponse.sendRedirect(httpRequest.getContextPath() + "/dashboard");
-                return;
-            }
-
+        if(user != null && !_userService.hasGroups(user, necessaryGroups)) {
             httpResponse.sendRedirect(httpRequest.getContextPath() + "/auth/login");
             return;
         }
+
+        request.setAttribute("user", user);
 
         chain.doFilter(request, response);
     }

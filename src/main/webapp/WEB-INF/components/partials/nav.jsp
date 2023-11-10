@@ -1,16 +1,36 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jiveoff
-  Date: 10/11/2023
-  Time: 11:31
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<aside>
+    <details>
+        <summary>Utilisateurs</summary>
+        <ul>
+            <li>
+                <a href="users">Liste des utilisateurs</a>
+            </li>
+            <li>
+                <a href="users/create">Créer un utilisateur</a>
+            </li>
+        </ul>
+    </details>
+    <details>
+        <summary>Ecoles</summary>
+        <ul>
+            <li>
+                <a href="schools">Liste des écoles</a>
+            </li>
+            <li>
+                <a href="schools/create">Créer une école</a>
+            </li>
+        </ul>
+    </details>
+    <details>
+        <summary>Offres</summary>
+        <ul>
+            <li>
+                <a href="offers">Liste des offres</a>
+            </li>
+            <li>
+                <a href="offers/create">Créer une offre</a>
+            </li>
+        </ul>
+    </details>
+</aside>

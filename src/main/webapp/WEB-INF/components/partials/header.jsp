@@ -1,16 +1,17 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: jiveoff
-  Date: 10/11/2023
-  Time: 11:31
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<%@ page contentType="text/html;charset=UTF-8" %>
+<nav class="container-fluid">
+    <ul>
+        <li></li>
+        <li>
+            AMiRE
+        </li>
+    </ul>
+    <ul>
+        <li>
+            <a class="secondary" href="dashboard">${username}</a>
+        </li>
+        <li>
+            <a class="secondary" href="logout">Se déconnecter</a>
+        </li>
+    </ul>
+</nav>
