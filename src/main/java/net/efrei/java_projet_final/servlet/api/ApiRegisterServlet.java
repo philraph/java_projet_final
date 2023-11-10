@@ -64,8 +64,6 @@ public class ApiRegisterServlet extends HttpServlet {
                                                         extra);
         }
 
-        System.out.println("isSuccess: " + isSuccess);
-
         if (isSuccess) {
             responseMap.put("status", "success");
             responseMap.put("message", "registration");
