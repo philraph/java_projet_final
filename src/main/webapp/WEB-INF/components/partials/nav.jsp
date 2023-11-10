@@ -26,10 +26,10 @@
         <summary>Offres</summary>
         <ul>
             <li>
-                <a href="offers">Liste des offres</a>
+                <a href="/offers">Liste des offres</a>
             </li>
             <li>
-                <a href="offers/create">Créer une offre</a>
+                <a href="/create/offres">Créer une offre</a>
             </li>
         </ul>
     </details>
