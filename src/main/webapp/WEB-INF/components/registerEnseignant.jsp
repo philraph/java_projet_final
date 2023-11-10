@@ -1,6 +1,5 @@
 <%--Formulaire Enseignant--%>
-<template x-if="accountType === 'enseignant'">
-    <div>
+<div>
         <div class="form-group">
             <label for="name">Nom</label>
             <input type="text" id="name" x-model="name">
@@ -53,4 +52,3 @@
             <textarea id="extra" x-model="extra" rows="10" cols="50"></textarea><br>
         </div>
     </div>
-</template>

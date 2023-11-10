@@ -14,7 +14,7 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/register.jsp");
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/pages/auth/register.jsp");
         dispatcher.forward(req, resp);
     }
 }

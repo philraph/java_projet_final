@@ -1,5 +1,4 @@
 <%--Formulaire ecole--%>
-<template x-if="accountType === 'ecole'">
     <div>
         <div class="form-group">
             <label for="raison">Raison Social</label>
@@ -7,4 +6,3 @@
             <span x-show="errors.raison" style="color: red; font-size: small" x-text="errors.raison"></span>
         </div>
     </div>
-</template>

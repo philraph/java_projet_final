@@ -29,7 +29,8 @@
         <div class="form-group">
             <label for="passwordConfirm">Confirmer le mot de passe</label>
             <input x-model="passwordConfirm" type="password" id="passwordConfirm" name="passwordConfirm">
-            <span x-show="errors.passwordConfirm" style="color: red; font-size: small" x-text="errors.passwordConfirm"></span>
+            <span x-show="errors.passwordConfirm" style="color: red; font-size: small"
+                  x-text="errors.passwordConfirm"></span>
         </div>
 
         <div class="form-group">
@@ -48,8 +49,12 @@
             <span x-show="errors.accountType" style="color: red; font-size: small" x-text="errors.accountType"></span>
         </div>
 
-        <jsp:include page="/WEB-INF/components/registerEcole.jsp"/>
-        <jsp:include page="/WEB-INF/components/registerEnseignant.jsp"/>
+        <template x-if="accountType === 'ecole'">
+            <jsp:include page="/WEB-INF/components/registerEcole.jsp"/>
+        </template>
+        <template x-if="accountType === 'enseignant'">
+            <jsp:include page="/WEB-INF/components/registerEnseignant.jsp"/>
+        </template>
 
         <div class="form-group">
             <fieldset>
@@ -57,7 +62,8 @@
                     <input type="checkbox" id="terms" x-model="acceptedTerms" required>
                     J'accepte les Conditions Generales d'Utilisation <span style="color: red">*</span>
                 </label>
-                <span x-show="errors.acceptedTerms" style="color: red; font-size: small" x-text="errors.acceptedTerms"></span>
+                <span x-show="errors.acceptedTerms" style="color: red; font-size: small"
+                      x-text="errors.acceptedTerms"></span>
             </fieldset>
             <button type="submit">S'inscrire</button>
         </div>
@@ -168,7 +174,7 @@
                         return response.json();
                     })
                     .then((response) => {
-                        if(response.status === "error") {
+                        if (response.status === "error") {
                             this.error.server = response.message;
                         } else {
                             window.location.href = "/dashboard";
