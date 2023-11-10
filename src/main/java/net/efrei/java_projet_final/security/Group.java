@@ -5,7 +5,7 @@ public enum Group {
     ECOLE("ECOLE", "Ecole"),
     ENSEIGNANT("ENSEIGNANT", "Enseignant"),
     VALID_USER("VALID_USER", "Utilisateur"),
-    USER("USER", "Utilisateur non validé"),
+    USER("USER", "Utilisateur"),
     GUEST("GUEST", "Invité");
 
     private final String name;

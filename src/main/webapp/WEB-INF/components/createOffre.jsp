@@ -21,4 +21,13 @@
     <textarea placeholder="remarque..." aria-label="Remarques" id="remarque" name="remarques"></textarea><br>
   </div>
 
+  <div class="form-group">
+    <label for="dateDebut">Date de debut du besoin</label>
+    <input type="date" id="dateDebut" name="dateDebut" required aria-label="Date" />
+  </div>
+  <div class="form-group">
+    <label for="dateFin">Date de fin du besoin</label>
+    <input type="date" id="dateFin" name="dateFin" required aria-label="Date" />
+  </div>
+
 </div>

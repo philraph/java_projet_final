@@ -4,6 +4,7 @@ import jakarta.inject.Inject;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import net.efrei.java_projet_final.entities.Utilisateur;
@@ -14,7 +15,7 @@ import java.util.List;
 
 
 @WebServlet("/users")
-public class UtilisateurServlet {
+public class UtilisateurServlet extends HttpServlet {
 
     @Inject
     private UtilisateurService userService;
