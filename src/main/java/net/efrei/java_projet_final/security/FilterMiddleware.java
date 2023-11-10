@@ -32,6 +32,12 @@ public class FilterMiddleware implements Filter {
         HttpSession session = httpRequest.getSession();
 
         String servletName = ((HttpServletRequest) request).getHttpServletMapping().getServletName();
+
+        if(servletName.equals("default")) {
+            httpResponse.sendRedirect(httpRequest.getContextPath() + "/dashboard");
+            return;
+        }
+
         Protected protectedAnnotation = null;
         try {
             protectedAnnotation = (Protected) Class.forName(servletName).getAnnotation(Protected.class);
