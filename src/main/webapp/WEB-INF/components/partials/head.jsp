@@ -15,4 +15,12 @@
             rel="stylesheet"
             href="https://picocss.com/docs/css/pico.docs.min.css"
     />
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/primeflex@latest/primeflex.css"
+    />
+    <link
+            rel="stylesheet"
+            href="${pageContext.request.contextPath}/resources/css/styles.css"
+    >
 </head>

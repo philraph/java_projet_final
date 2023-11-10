@@ -20,7 +20,6 @@ public class UtilisateurServlet extends HttpServlet {
     @Inject
     private UtilisateurService userService;
 
-    @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         List<Utilisateur> users = userService.findByIsValid(true);
