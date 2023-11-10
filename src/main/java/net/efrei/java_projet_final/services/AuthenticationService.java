@@ -65,12 +65,7 @@ public class AuthenticationService {
                                       String contrat,
                                       String extra) {
 
-        Utilisateur user;
-        try {
-            user = _userService.findByUsername(username);
-        } catch (Exception e) {
-            return false;
-        }
+        Utilisateur user = _userService.findByUsername(username);
 
         if (user != null) {
             // Le nom d'utilisateur existe déjà
@@ -83,6 +78,11 @@ public class AuthenticationService {
             user.setPassword(bcryptHashString);
             user.setUsername(username);
             user.setIsValid(false);
+            user.setIsAdmin(false);
+
+            _userService.register(user);
+
+            user = _userService.findByUsername(username);
 
             // Crée un nouvel enseignant
             Enseignant newEnseignant = new Enseignant();
@@ -96,7 +96,6 @@ public class AuthenticationService {
             newEnseignant.setCentreInterets(centreInteret);
             newEnseignant.setTypeContrat(contrat);
 
-            _userService.register(user);
             _enseignantService.create(newEnseignant);
 
             return false;
