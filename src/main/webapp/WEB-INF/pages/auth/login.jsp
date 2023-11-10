@@ -36,7 +36,7 @@
             <button type="submit">Se connecter</button>
         </div>
 
-        <p>Pas encore de compte ? <a href="/WEB-INF/pages/auth/register.jsp">S'inscrire</a></p>
+        <p>Pas encore de compte ? <a href="/auth/register">S'inscrire</a></p>
     </form>
 </div>
 
