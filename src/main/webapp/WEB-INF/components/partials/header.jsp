@@ -18,7 +18,7 @@
     </ul>
     <ul>
         <li>
-            <a class="secondary" href="dashboard"><%= user.getUsername() %> (<%= firstGroup %>)</a>
+            <a class="secondary" href="dashboard"><em data-tooltip="<%= firstGroup %>" data-placement="bottom"><%= user.getUsername() %></em></a>
         </li>
         <li>
             <a class="secondary" href="logout">Se déconnecter</a>
