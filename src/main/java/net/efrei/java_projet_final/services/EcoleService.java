@@ -40,10 +40,6 @@ public class EcoleService {
         return ecoleBean.findByRaisonSociale(raisonSociale);
     }
 
-    public Ecole findByUserIdentifier(String userIdentifier) {
-        return ecoleBean.findByUserIdentifier(userIdentifier);
-    }
-
     public Ecole findByUsername(String username) {
         return ecoleBean.findByUsername(username);
     }
