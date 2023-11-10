@@ -19,6 +19,9 @@ public class Offre {
     @Column(name = "id", nullable = false)
     private Integer id;
 
+    @Column(name = "intitule")
+    private String intitule;
+
     @Column(name = "exigences")
     private String exigences;
 
@@ -95,4 +98,11 @@ public class Offre {
         this.competences = competences;
     }
 
+    public String getIntitule() {
+        return intitule;
+    }
+
+    public void setIntitule(String intitule) {
+        this.intitule = intitule;
+    }
 }
