@@ -4,6 +4,7 @@ import jakarta.ejb.EJB;
 import jakarta.ejb.Stateless;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Singleton;
+import jakarta.persistence.TypedQuery;
 import net.efrei.java_projet_final.beans.EcoleBean;
 import net.efrei.java_projet_final.entities.Ecole;
 
