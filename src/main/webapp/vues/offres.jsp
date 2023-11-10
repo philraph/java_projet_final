@@ -14,27 +14,21 @@
 <body>
 <div class="grid-container" x-data="{ jobOffers: [
     {
-        title: 'Software Developer',
-        description: 'Exciting opportunity for a software developer...',
-        school: 'University of Tech',
-        postedDate: '2023-11-10'
+        exigences: 'Software Developer',
+        remarques: 'Exciting opportunity for a software developer...',
+        competences: 'University of Tech',
     },
     {
-        Exigences: 'Data Scientist',
-        description: 'Join our team as a data scientist and work on cutting-edge projects...',
-        school: 'Data Science Institute',
-        postedDate: '2023-11-09'
+        exigences: 'Data Scientist',
+        remarques: 'Join our team as a data scientist and work on cutting-edge projects...',
+        competences: 'Data Science Institute',
     }
 ]}">
     <template x-for="offer in jobOffers" :key="offer.id">
         <div class="job-card">
-            <h2 x-text="offer.title"></h2>
-            <p x-text="offer.description"></p>
-            <small x-text="`Ecole: ${offer.school}`"></small><br>
-            <small x-text="`Exigences: ${offer.school}`"></small><br>
-            <small x-text="`Remarques: ${offer.remarques}`"></small><br>
-            <small x-text="`Competences: ${offer.competences}`"></small><br>
-            <small x-text="`Posted Date: ${offer.postedDate}`"></small>
+            <h2 x-text="offer.exigences"></h2>
+            <p x-text="offer.remarques"></p>
+            <small x-text="`competences: ${offer.competences}`"></small>
         </div>
     </template>
 
