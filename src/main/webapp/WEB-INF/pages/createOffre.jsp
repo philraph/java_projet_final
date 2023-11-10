@@ -11,7 +11,7 @@
 
 <div class="container">
     <h2>Creation d'une offre</h2>
-    <form action="/createOffre" method="post">
+    <form action="/offre" method="post">
 
         <jsp:include page="/WEB-INF/components/createOffre.jsp"/>
 
